@@ -3,3 +3,5 @@ src/__pycache__/
 .venv/
 env
 public/
+main.sh
+test.sh

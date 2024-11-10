@@ -1,5 +1,4 @@
-import re
-import os
+import re, os
 from block_markdown import *
 
 def extract_title(markdown):

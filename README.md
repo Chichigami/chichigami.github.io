@@ -1,6 +1,3 @@
-# Markdown to HTML static site generator
+# Portfolio
 
-Generic Static Site Generator.
-
-Use a HTML Template, and CSS file to generate an HTML page from your markdown file.
-This will be used for my github pages and changes will be made (espcially the file copying)
+This is a fork and upgraded version of my static site generator repo.
