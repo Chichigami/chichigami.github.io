@@ -1,32 +1,22 @@
-# Tolkien Fan Club
+# Gary Feng's Portfolio
 
-**I like Tolkien**. Read my [first post here](/majesty)
+I have a B.S. in Statistics, worked in healthcare, and learning backend development. This website is a fork/clone of my static site generator project.
+Do not expect fancy UX design here. The base coloring of the website is inspired by GMK Olivia.
 
-> All that is gold does not glitter
+[Github](https://github.com/Chichigami)
+[LinkedIn](https://www.linkedin.com/in/gary-feng-847156241/)
+[Bootdev](https://www.boot.dev/u/chichigami)
 
-## Reasons I like Tolkien
+## Projects I have done
 
-* You can spend years studying the legendarium and still not understand its depths
-* It can be enjoyed by children and adults alike
-* Disney *didn't ruin it*
-* It created an entirely new genre of fantasy
+- This
+- Pokedex
+- RSS aggregator
+- Wordle in Scala
+- Maze creator and solver
+- Asteroids in Pygame
 
-## My favorite characters (in order)
+## My notes
 
-1. Gandalf
-2. Bilbo
-3. Sam
-4. Glorfindel
-5. Galadriel
-6. Elrond
-7. Thorin
-8. Sauron
-9. Aragorn
-
-Here's what `elflang` looks like (the perfect coding language):
-
-```
-func main(){
-    fmt.Println("Hello, World!")
-}
-```
+I have done quite a bit of notes and I'll store them here
+SQL [/notes/SQL]
