@@ -2,6 +2,7 @@ import unittest
 
 from htmlnode import HTMLNode
 
+
 class TestHTMLNode(unittest.TestCase):
     def test_prop_None(self):
         node = HTMLNode()

@@ -1,9 +1,6 @@
 import unittest
 
-from node_conversions import *
-from block_markdown import *
-from textnode import *
-from htmlnode import *
+from block_markdown import block_to_block_type, markdown_to_blocks, markdown_to_html_node
 
 class TestSplitBlockMarkdown(unittest.TestCase):
     def test_default(self):

@@ -1,6 +1,6 @@
 import unittest
 
-from htmlnode import *
+from htmlnode import LeafNode
 
 class TestLeafNode(unittest.TestCase):
     def test_to_html_no_props(self):

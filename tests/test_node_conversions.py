@@ -1,8 +1,8 @@
 import unittest
 
-from node_conversions import *
-from textnode import *
 from htmlnode import LeafNode
+from node_conversions import *
+from textnode import TextNode
 
 class TestNodeConversion(unittest.TestCase):
     def test_no_tag(self):
