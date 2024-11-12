@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Tags </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <article>
+        <div><h1>Git</h1><p>Pretty unorganized because it's mostly just terminal commands.</p><p><code></code><code>zsh
+git status</code></p><p>git add filepath</p><p>git commit -m "message"</p><p>git commit --amend -m "change last commit message"</p><p>#see history
+git log</p><p>git cat-file -p hash
+//will return the blob of the commit</p><p>git config --add --global key value
+	--global
+	--local
+	~/.gitconfig</p><p>git config --get <key>
+git config --unset <key>
+git config --unset-all <section.key>
+git config --remove-section <section></p><p>git branch my_new_branch //make branch
+git switch -c my_new_branch //make and switch to branch
+	-c = create</p><p>git switch vs git checkout
+	same thing. checkout is older. boomers using checkout</p><p>git log --oneline --graph --all</p><p>git switch -c update_dune COMMITHASH</p><p>git reset --hard</p><p>//remote
+git remote add <name> <uri>
+//one true repo
+git log <name>/<branch>
+<code></code><code></code></p><p><img src=":/edc2926062ec4d5aaf2088d826877e19" alt="338c3e078618e3531076fde5e9a358de.png"></img></p><h2>.gitignore</h2><p>a file hidden so that git ignores whatever is in the file
+Things that can be inside of .gitignore</p><p><code></code><code>
+filename
+directory
+</code><i>.txt match anything that ends with .txt
+/main.py will ignore main.py in the directory with .gitignore</i></p><p><i>.txt
+!important.txt
+//will ignore all .txt file except important</i></p><p>use # to comment inside the .gitignore file
+<code></code><code></code></p><h1>Git 2</h1><h1>Fork</h1><p>Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.</p><p>Procedure to contribute:</p><ol><li>fork repo</li><li>clone repo</li><li>make new branch with a name ie: your_feature</li><li>make changes</li><li>commit and push to your repo</li><li>create pull request on original repo</li></ol><pre><code>sh
+git clone https://github.com/chichigami/megacorp
+cd megacorp
+git branch
+git switch or git checkout
+git reflog
+git cat-help -p
+	the reflog's commit hash
+	then the tree commit hash
+	then the blob of the file
+git switch branch_name
+git merge main
+	if conflict, fix
+git add
+git commit
+	git log should now show the 2 commit hashes come together
+</code></pre><h1>Stash</h1><pre><code>sh
+git stash
+git stash pop
+git stash list
+git stash apply
+git cherry-pick <commit-hash>
+</code></pre><h1>Bisect</h1><p>Bisec helps you find which commit caused a bug</p><pre><code>sh
+git bisect start
+git bisect good <commit-hash>
+git bisect bad <commit-hash>
+</code></pre><h1>Worktree</h1><pre><code>sh
+git worktree add <path> <branch>
+	optional: <branch> defaults to <path>'s name
+git worktree list
+cat <path>/.git will link to the main worktree
+git worktree remove <worktree_name>
+git worktree prune
+</code></pre><p>Can't switch branch that is being worked on in another tree</p><h1>Tags</h1><p>Useful for versions of the application
+ie: v1.0, 2.0 etc</p><pre><code>sh
+git tag
+	list all tags
+git tag -a "tag_name" -m "tag_description"
+	will make it at current commit
+git push --tags
+</code></pre><p>Naming convention
+v1.2.3
+1 is for major changes
+2 is for minor changes
+3 is for bug fixes</p></div>
+    </article>
+</body>
+
+</html>

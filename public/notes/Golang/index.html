@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> HTTPS </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <article>
+        <div><h1>Git</h1><p>It's mostly complete, but needs to be touched upon.</p><h2>Types</h2><p><code></code><code>
+bool</code></p><p>string</p><p>int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr</p><p>byte // alias for uint8</p><p>rune // alias for int32
+     // represents a Unicode code point</p><p>float32 float64</p><p>complex64 complex128
+<code></code><code></code></p><h2>Printing</h2><p><code></code><code>
+import fmt</code></p><p>fmt.Printf("string")
+fmt.Printf(variable)</p><p>%v -> value
+%s -> string
+%d -> int
+%.2f -> float with 2 decimals
+fmt.Sprintf("Hello %v", "world")
+fmt.Sprintf("Hello %s", "world")
+<code></code><code></code></p><h2>Strongly typed</h2><p><code></code><code>
+var first_name string = "Gary"
+last_name := "Feng"</code></p><p>var age = 2.6
+short_age := int(age)</p><p>//age = 24.6
+//short_age = 24</p><p>const gender = "M"
+<code></code><code></code></p><p>Both are string, walrus <code>:=</code> will "infer" the type to assign the variable</p><h2>IF ELSE</h2><p><code></code><code>go
+if length1 < length2{
+    asd
+} else if length1 > length2{
+    asd
+} else {
+    asd
+}</code></p><p>if length := getLength(variable); length < 1 {
+}
+<code></code><code></code></p><p>if you want to make a variable inside the scope</p><h2>Switch Case</h2><pre><code>o
+func name(plan string) float64{
+    switch plan{
+    case "free":
+        return 10.0
+    case "pro":
+        return 20.0
+    default:
+        return 30.0
+    }
+}
+</code></pre><h2>blank identifier</h2><p><code>_</code> can discard a return value  
+<code>x, _ := getXY()</code>  
+So if a function returns 2 values like <code>getXY()</code> but we only care about the x, we can use <code>_</code> to discard the value.</p><h2>Named return</h2><pre><code>o
+func getName()(first String, last String){
+    //first and last are intialized with no values
+    return //will return first and last if left blank
+}
+</code></pre><h2>Struct</h2><p>Go doesn't have inheriance or classes, but struct's sort of allows data only inheriance</p><p><code></code><code>go
+type car struct {
+    model string
+    speed int
+    name string
+    color string
+    cost float64
+}</code></p><p>func (myCar car) isCar() bool{
+    //check if myCar is a valid car
+    return true or false
+}</p><p>fmt.Println(myCar.isCar())
+//true or false
+<code></code><code></code></p><p>Memory layout matters</p><pre><code>o
+type stats struct {
+    Reach    uint16
+    NumPosts uint8
+    NumLikes uint8
+}
+</code></pre><p><img src=":/afb8eaeab1de470f8eee0074ca9f77b4" alt="b7604073197af25f77e411a6daf35aed.png"></img>  
+Notice how it's 16 then 8 then 8. if the memory is 8 then 16 then 8. It will add padding which will waste memory space.  
+<img src=":/f777faa76179486486b181d2b8f64d9c" alt="f7fb5aa446ab886a231c2fda12441add.png"></img>  
+<a href="https://pkg.go.dev/reflect">reflect package</a> can help debug <a href="https://go101.org/article/memory-layout.html">memory layout</a></p><p><code>empty := struct{}{}</code>  
+this is an empty struct.</p><pre><code>o
+type emptyStruct struct{}
+empty := emptyStruct{}
+</code></pre><p>this is a named empty struct.  
+They are used as unary values. Both of these take 0 bytes.  
+Example of a function for a structure.</p><pre><code>o
+func (myUser User) SendMessage (message string, messageLength int) (string, bool) {
+    if messageLength <= myUser.Membership.MessageCharLimit {
+        return message, true
+    }
+    return "", false
+}
+</code></pre><p>Send message is the method for User struct. It takes in message and messageLength as the parameter and returns a string and boolean. An example of using this method is</p><pre><code>o
+Bob := User{
+	//stuff
+}
+Bob.SendMessage("Hello World", 11)
+</code></pre><p>\> > RE ORGANIZE THIS < <</p><h2>Interface</h2><p>A collection of method signatures.</p><pre><code>map[string]any
+</code></pre><h1>Variadic</h1><p><code></code><code>go
+import package</code></p><p>func sum(nums ...int) int{
+	sum := 0
+	for i := 0; i < len(nums); i++{
+		sum += nums[i]
+	}
+	return sum
+}
+<code></code><code></code></p><p>Notice the <code>...</code> before int. It takes an abirtary number of final arguments.</p><pre><code>o
+// func make([]T, len, cap) []T
+mySlice := make([]int, 5, 10)
+</code></pre><h1>Append</h1><pre><code>o
+i := make([]int, 3, 8)
+fmt.Println("len of i:", len(i))
+// len of i: 3
+fmt.Println("cap of i:", cap(i))
+// cap of i: 8
+fmt.Println("appending 4 to j from i")
+// appending 4 to j from i
+j := append(i, 4)
+fmt.Println("j:", j)
+// j: [0 0 0 4]
+fmt.Println("addr of j:", &j[0])
+// addr of j: 0x454000
+fmt.Println("appending 5 to g from i")
+// appending 5 to g from i
+g := append(i, 5)
+fmt.Println("addr of g:", &g[0])
+// addr of g: 0x454000
+fmt.Println("i:", i)
+// i: [0 0 0]
+fmt.Println("j:", j)
+// j: [0 0 0 5]
+fmt.Println("g:", g)
+// g: [0 0 0 5]
+</code></pre><h1>Slices (Arrays)</h1><p><code>var myInts[10]</code>
+slice of size 10
+<code>primes := [6]int{1,2,3,4,5,6}</code>
+slices
+<code>primes[1:4]</code></p><h1>Loops</h1><p><code>for i := 0; i < len(something); i++{
+}</code></p><p><code>for i, ele := range slice{
+}</code></p><h1>Maps</h1><p>to make a map in go, need to use make method
+<code>dict := make(map[string]int)</code>
+this is a map of key string to int value.</p><h1>Pointers</h1><p>Uses <code></code><i>` and `&`</i></p><h1>Channels</h1><p>Channel creation
+<code>ch <- make(chan int, len(size))</code>
+Sending to channel
+<code>ch <- 5</code>
+Receiving from channel
+<code>x := <-ch</code>
+Close channel
+<code>close(ch)</code> / <code>defer close(ch)</code>
+Check if closed
+<code>if value, ok := <-ch; !ok{
+	fmt.Println("ch closed")
+}</code>
+if sending data to closed channel. It will panic. Reciving from closed channel will result in 0.
+Type safety
+Read only<code>func name(chan <-chan string)</code>
+Write only <code>func name(chan chan<- string</code>
+Select statement</p><pre><code>select{
+case:
+default:
+}
+</code></pre><p>Code snippet</p><p><code></code><code>go
+import "time"</code></p><p>func processMessages(messages []string) []string {
+	ch := make(chan string, len(messages))
+	for _, message := range messages{
+		go func(msg string){
+			ch <- process(msg)
+		}(message)
+	}
+	processedMsgs := make([]string, len(messages))
+	for i := 0; i < len(messages); i++{
+		processedMsgs[i] = <-ch
+	}
+	return processedMsgs
+}</p><p>func process(message string) string {
+	time.Sleep(1 <i> time.Second)
+	return message + "-processed"
+}
+```</i></p><h1>Mutexes</h1><h1>Generics</h1><pre><code>o
+func last<a href="s []T">T any</a> T {
+	if len(s) == 0 {
+		var zero T
+		return zero
+	}
+	return s[len(s)-1]
+}
+</code></pre><p>T is the generic variable name. any allows it to be a generic
+in order for there to be a 0 generic.</p><h2>Constraints</h2><p>If you want only certain generics/types then you can make an interface</p><p><code></code><code>go
+type numbers interface {
+    ~int | ~int8 | ~int16 | ~int32 | ~int64 |
+        ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
+        ~float32 | ~float64 |
+}</code></p><p>func doMath<a href="vals []T">T numbers</a> T {
+	//do something and return a T type
+}
+<code></code><code></code></p><h1>Enum</h1><h1>HTTPS</h1><h2>JSON</h2><p><code></code><code>go
+type Item struct{
+	Id 					string </code>json:"id"<code>
+	Name			 string </code>json:"name"<code>
+	ItemLevel int		 </code>json:"item_level"<code>
+}</code></p><p>func getJSONtoGoStruct(url string) ([]Item, error){
+	res, res_err := http.Get(url)
+	defer res.Body.Close() //to prevent mem issue
+	var items []Items</p><p>decoder := json.NewDecoder(res.Body)
+	err := decoder.Decode(&items)
+------------------------------------OR----------------------------------------
+	data []byte, err := io.ReadAll(res.Body)
+	json.Unmarshal(data, &items)</p><p>return items
+}
+<code></code><code></code></p><p>Makes a GET request and turns the result into a Go struct</p><p><code>data, err := json.Marshal(items)</code>
+Turns a go struct into a <code>[]bytes</code></p><h2>CRUD</h2><p><code></code><code>go
+func createPostReq(url, apiKey string, user User)(User, err){
+	jsonData, err := json.Marshal(data)
+	//err  check</code></p><p>req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	//err check</p><p>req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("X-API-Key", apiKey)</p><p>client := &http.Client{}
+	res, err := client.Do(req)
+	//err check</p><p>defer res.Body.Close()</p><p>var newUser User
+	decoder := json.NewDecoder(res.Body)
+	err = decoder.Decode(&newUser)
+	//err check</p><p>return data, nil
+}
+<code></code><code></code></p><p><code>http:NewRequest("GET/POST/PUT/DELETE", url, nil/bytes.NewBuffer(jsonData))</code></p><p><code></code><code>
+brew install postgresql@16
+brew services start postgresql
+/opt/homebrew/opt/postgresql@16/bin/psql --version
+echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
+psql --version</code></p><p>brew services start postgresql@16
+psql postgres
+CREATE DATABASE gator;
+\c gator
+SELECT version();
+<code></code><code></code></p></div>
+    </article>
+</body>
+
+</html>
