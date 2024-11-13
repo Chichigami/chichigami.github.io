@@ -12,7 +12,7 @@ def main():
     except Exception as e:
         print(f"Failed to copy tree: {e}")
 
-    generate_pages_recursive('content/', 'template.html', 'public/')
+    generate_pages_recursive('content/', 'templates/template.html', 'public/')
 
 if __name__ == "__main__":
     main()
