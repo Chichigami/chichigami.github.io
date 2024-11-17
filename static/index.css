@@ -92,6 +92,9 @@ img {
     border-radius: 6px;
 }
 
+
+/* Nav */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -102,6 +105,13 @@ img {
     font-size: 1.5rem;
     font-weight: bold;
     color:#fff;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3 ease;
+}
+
+.logo:hover {
+    transform: scale(1.2);
     text-decoration: none;
 }
 
@@ -125,12 +135,22 @@ img {
 }
 
 /* Footer */
-footer {
+.footer {
     background-color: #363434;
     color: #f2efed;
     text-align: center;
-    padding: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #58a6ff;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
 }

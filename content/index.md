@@ -1,13 +1,11 @@
-# Gary Feng
+# Gary Feng: From Data to Development
 
-I have a B.S. in Statistics from University at Buffalo SUNY (not SUNY Buffalo). I entered the workfield as a opthamologist technician, and have been learning backend development after. This website is a fork/clone of my static site generator project.
+I hold a Bachlore of Science in Statistics from University at Buffalo, SUNY. I entered the workfield as a opthamologist technician, and have been learning backend development via Bootdev. I went through a lot of the courses and still going. Currently I am working on an RSS aggregator as well as this website. This website currently does not fully support markdown.
 
-Email: [g.feng.work@gmail.com](mailto:g.feng.work@gmail.com)
+## Skill/Tech stack
 
-[Github](https://github.com/Chichigami)
+Programming Languages: Go, Python, JavaScript, Scala
 
-[LinkedIn](https://www.linkedin.com/in/gary-feng-847156241/)
+Tools: Git, Docker, Kubernetes
 
-[Bootdev](https://www.boot.dev/u/chichigami)
-
-![Resume](/images/resume.pdf)
+Frameworks: None

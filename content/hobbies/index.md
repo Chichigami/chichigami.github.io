@@ -13,8 +13,13 @@ Like most people that get into programming; I enjoy playing games. These are som
 
 ## Keyboards
 
+I built all my keyboards, currently I use Alyssa.
+
+![Alyssa](/images/alyssa.jpeg)
 Alyssa
 
+![Array65](/images/array.jpg)
 Array65
 
-Hex6C
+![Hex6C](/images/hex6c.jpeg)
+Hex 6C
