@@ -9,3 +9,5 @@ Programming Languages: Go, Python, JavaScript, Scala
 Tools: Git, Docker, Kubernetes
 
 Frameworks: None
+
+Statistical Tools: R, Minitab, Excel
