@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> HTTP servers </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gary Feng</a>
+        <ul class="nav-tabs">
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/notes/">Notes</a></li>
+            <li><a href="/hobbies">Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <div><h1>HTTP servers</h1><h2>Goals</h2><ul><li>Understand what web servers are</li><li>Build a production style HTTP server without framework</li><li>Use JSON, headers, status codes to communicate with client via RESTful API</li><li>Use typesafe SQL to store and retrieve data from Postgres db</li><li>Implement secure auth system w/ crypto libs</li><li>Build and understand webhooks</li><li>Document REST API w/ MD</li></ul><h2>Servers</h2><p>Many different server stacks</p><ul><li>Go: Great performance whether the workload is I/O or CPU-bound</li><li>Python / Django / Flask: ok in I/O task</li><li>  - Usually python apps handle single request at a time. WSGI saves the day by spinning up multiple python instances to handle diff req.</li><li>Node.js / Express.js: Good in I/O but struggles in CPU-bound tasks.</li><li>  - Usually single threaded. Uses single cpu core. Handles many request via async event loops.</li></ul><p><code></code><code>go
+func main(){
+	const port = "8080"</code></p><p>mux := http.NewServeMux()
+	server := &http.Server{
+		Addr:    ":" + port,
+		Handler: mux,
+	}
+	log.Printf("Serving on port: %s\n", port)
+	server.ListenAndServe()
+}
+<code></code><code></code></p><p>Very basics of hosting a server on localhost:8080</p><h2>Handlers vs Handlers func</h2><p><code></code><code>
+	mux.Handle("/app/", http.StripPrefix("/app", http.FileServer(http.FileSystem(http.Dir(".")))))
+	mux.HandleFunc("/healthz", handlerHealthz)</code></p><p>func handlerHealthz(w http.ResponseWriter, req <i>http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.WriteHeader(200)
+	w.Write([]byte("OK"))
+}
+```</i></p><p>A handler is an interface.</p><pre><code>type Handler interface {
+	ServeHTTP(ResponseWriter, <i>Request)
+}
+</i></code></pre><p>Handlers handles HTTP requests. Usually will be used to handle more complex task. HandlerFunc are used when you want to implement simpler handler.</p><pre><code>type HandlerFunc func(ResponseWriter, <i>Request)
+</i></code></pre><p>\<i>Request contains all info coming from client like method, path, headers, and body
+ResponseWriter is mutable and we want to write to it. Think of it like changing a dict in Python.</i></p><pre><code>def changeItem(dict):
+	dict[item] = changed
+</code></pre><p>So no copying required (less memory). Less chance of of bugs / mismatched data. Clarity</p><p><code></code><code>
+	apiCfg := apiConfig{}</code></p><p>mux.Handle("/app/", http.StripPrefix("/app", apiCfg.middlewareMetricInc(http.FileServer(http.FileSystem(http.Dir("."))))))
+	mux.HandleFunc("/healthz", handlerHealthz)
+	mux.HandleFunc("/metrics", apiCfg.handlerMetric)
+	mux.HandleFunc("/reset", apiCfg.handlerMetricReset)</p><p>func (cfg <i>apiConfig) handlerMetric(w http.ResponseWriter, req </i>http.Request) {
+	result := fmt.Sprintf("Hits: %d\n", cfg.fileserverHits.Load())</p><p>w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.WriteHeader(200)
+	w.Write([]byte(result))
+}</p><p>func (cfg <i>apiConfig) handlerMetricReset(w http.ResponseWriter, req </i>http.Request) {
+	cfg.fileserverHits.Store(0)
+}</p><p>func (cfg <i>apiConfig) middlewareMetricInc(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req </i>http.Request) {
+		cfg.fileserverHits.Add(1)
+		next.ServeHTTP(w, req)
+	})
+}</p><p>type apiConfig struct {
+	fileserverHits atomic.Int32
+}
+<code></code><code></code></p><h2>Routing</h2><pre><code>	mux.HandleFunc("GET /healthz", handlerHealthz)
+	mux.HandleFunc("GET /metrics", apiCfg.handlerMetric)
+	mux.HandleFunc("POST /reset", apiCfg.handlerMetricReset)
+</code></pre><p>Only allows /healthz, /metrics to be reached via GET request.</p><pre><code>[Method ][HOST]/[PATH]
+</code></pre><p>The above is a pattern. Will match pattern based on the longest string.
+/assets/css/style.css will be handled by /assets/css/</p><h2>Architectures</h2><h3>Monoliths and Decoupling</h3><p>Coupling in this context would be the data and presentation logic of the data.
+Front end: The presentation logic
+In a web app, it would be HTML CSS JS</p><h2>Authentication vs Authorization</h2><p>Authentication: Verify a user via some method like password, api key, 2fa, etc
+Authorization: ALLOWS a verified user to do an action. Like discord mod vs kitten</p><h2>Webhooks</h2><p>A webhook is an event that is sent to your server by 3rd party service. Example: Stripe to process payments
+Stripe sends a webhook to server and we use that info. Example: Stripe sends webhook, we give membership
+Webhooks often make multiple request. So the webhook handler needs to be idempotent (result is the same, can have side effects).
+Process:</p><ol><li>Person makes payment to Stripe</li><li>Stripe process payment</li><li>Stripe sends a HTTP POST request to http://api.example.com/stripe/webhook</li><li>We handle the request AND THEN we send back a 2XX code</li></ol><p><b>NOT THE SAME AS WEBSOCKETS</b>. Websockets is a persistent connection between client and server.</p><h2>RESTful API (CRUD API)</h2><p>Conventional ways to make an API</p><pre><code>GET      /videos            #all videos
+GET      /videos/id         #/videos/2
+POST     /videos            #create a video
+PUT      /videos/id         #update a video
+DELETE   /videos/id         #delete a video
+</code></pre><p>DO NOT remove the plural convention. <b>DO NOT DO /video/id</b>
+Usually DELETE /videos DOES NOT EXIST. Do not want to delete all videos from the platform</p></div>
+    </article>
+
+    <footer class="footer">
+        <p>Contact me: <a href="mailto:g.feng.work@gmail.com">g.feng.work@gmail.com</a></p>
+        <p>
+            <a href="https://github.com/Chichigami" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://www.linkedin.com/in/gary-feng-847156241/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <a href="https://www.boot.dev/u/chichigami" target="_blank" rel="noopener noreferrer">Boot.dev</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>
