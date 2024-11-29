@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Docker </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gary Feng</a>
+        <ul class="nav-tabs">
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/notes/">Notes</a></li>
+            <li><a href="/hobbies">Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <div><h1>Docker</h1><p>WIP</p><h2>PC vs VM vs Containers</h2><p>VM you split up resources and is quite heavy
+Containers shares the resources but has environments set up</p><h2>Docker</h2><p>Uses an image to create a container</p><ul><li>An image can be made up of a few programs. Lets say your application needs python, mySQL. That image will contain those.</li></ul><p><code></code><code>
+docker [OPTIONS] command
+docker help</code></p><p>docker run -d -p 80:80 docker/getting-started:latest
+docker ps - shows what dockers are running</p><p>docker stop CONTAINER_ID
+docker kill CONTAINER_ID</p><p>docker images</p><p>docker exec CONTAINER_ID ls
+	list dirs in that container
+<code></code><code></code></p><p>docker run -d -e NODE_ENV=development -e url=http://localhost:3001 -p 3001:2368 -v ghost-vol:/var/lib/ghost/content ghost
+<img src=":/71d8dfa2862d480ebb4cff572ac2f53a" alt="718f5bff3f593718fbddd8bffe88c52c.png"></img></p><pre><code>docker rm CONTAINER_ID
+docker volume rm VOLUME_NAME
+</code></pre><p>Need to stop then remove container before you're allowed to remove volume.</p><h2>Isolating container via offline mode</h2><p>Example: if you want students to run code on machines. Auditing a malware in a container. Running sussy program that you dont want access to network.</p><h2>Load balancing</h2><p>We don't want server(s) to get overwealmed. So we have something to balance the load. So we split traffic to different servers. Many different ways.</p><ul><li><b>Round Robin</b> is one of them. Client 1 -> Server 1. Client 2 -> Server 2. Client 3 -> Server 3. Client 4 -> Server 1.</li></ul><p><code>docker run -p 8001:80 -v $PWD/index1.html:/usr/share/caddy/index.html caddy</code></p><h2>CI/CD pipeline</h2><p>Code -> Commit -> Push -> Pull Request -> Merged ->
+builds -> Image built -> Pushed to DockerHub ->
+K8s docker pull -> restart containers</p><p>The 2nd and 3rd pieces should be automated. To help deploy the latest software. All backend work.</p></div>
+    </article>
+
+    <footer class="footer">
+        <p>Contact me: <a href="mailto:g.feng.work@gmail.com">g.feng.work@gmail.com</a></p>
+        <p>
+            <a href="https://github.com/Chichigami" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://www.linkedin.com/in/gary-feng-847156241/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <a href="https://www.boot.dev/u/chichigami" target="_blank" rel="noopener noreferrer">Boot.dev</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

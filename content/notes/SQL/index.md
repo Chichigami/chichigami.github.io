@@ -20,7 +20,7 @@ Contraints can be `NOT NULL | UNIQUE | PRIMARY KEY`
 
 Foreign key will reference to another table's primary key. This makes table relational
 
-```sqlite
+```
 CREATE TABLE departments (
     id INTEGER PRIMARY KEY,
     department_name TEXT NOT NULL
@@ -38,7 +38,7 @@ CREATE TABLE employees (
 
 ## Insert Data
 
-```sqlite
+```
 INSERT INTO table (param1, param2, ...)
 VALUES (arg1, arg2, ...);
 ```
@@ -47,7 +47,7 @@ VALUES (arg1, arg2, ...);
 
 ## Alter/Change data
 
-```sqlite
+```
 ALTER TABLE table_name
 	RENAME TO table_name;
 	RENAME COLUMN column_name TO new_column_name;
@@ -65,7 +65,7 @@ DELETE FROM table WHERE variable = x
 
 Single value combing serval other values
 
-```sqlite
+```
 count
 	DISTINCT (UNIQUE col)
 sum (col)
@@ -81,7 +81,7 @@ round (value, presicion)
 
 ## Query
 
-```sqlite
+```
 SELECT what_you_want
 FROM table_name
 WHERE variable_name CONDITIONS
@@ -113,7 +113,7 @@ Has to come before LIMIT
 
 ## Subquery/Nested query
 
-```sqlite
+```
 SELECT variable1
 FROM table1
 WHERE variable1 IN (
@@ -125,7 +125,7 @@ WHERE variable1 IN (
 
 ## IIF/Ternary/IF ELSE
 
-```sqlite
+```
 SELECT *,
 IIF (CONDITION, TRUE, FALSE) AS appended_new_column_name
 FROM table;
@@ -139,7 +139,7 @@ Many to Many tables
 
 - Many different people can have multiple banks but they should have different bank info
 
-```sqlite
+```
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
@@ -186,7 +186,7 @@ This is like what set intersects what
 
 - SQLite doesn't support RIGHT and FULL JOINS but basically the same as LEFT JOIN but swap the variables around
 
-```sqlite
+```
 SELECT columns_you_want
 FROM table1
 JOIN table2 ON table1.column = table2.column

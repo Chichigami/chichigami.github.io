@@ -33,11 +33,11 @@ Null: <code>null</code></p><h2>Logical Operators</h2><p>And: <code>&&</code>
 Or: <code>||</code>
 Not: <code>!</code>
 Loose Equal: <code>==</code> This will compare value <code>5 == '5' => true</code>
-Strict Equal: <code>===</code> This will compare value AND type <code>5 === '5' => false</code></p><h1>If/Else/</h1><p><code></code><code>js
+Strict Equal: <code>===</code> This will compare value AND type <code>5 === '5' => false</code></p><h1>If/Else/</h1><p><code></code><code>
 if (condition) {</code></p><p>} else if {</p><p>} else {</p><p>}
 <code></code><code></code></p><p><b>Ternary</b>
 Combines if else into 1 line
-<code>let variable_name = condition ? True : False</code></p><h2>Switch/Match Case</h2><p><code></code><code>js
+<code>let variable_name = condition ? True : False</code></p><h2>Switch/Match Case</h2><p><code></code><code>
 def matchThis(word) ={
 	switch(word){
 		case 'hello':
@@ -50,8 +50,7 @@ def matchThis(word) ={
 		default:
 			console.log(word)
 	}
-}</code></p><pre><code></code></pre><p>If you don't break in a case, it will "fall through". So if the word matches case 2, it will go to case 3 and then exit out.</p><h2>Functions</h2><pre><code>s
-function variable(parameter) {
+}</code></p><pre><code></code></pre><p>If you don't break in a case, it will "fall through". So if the word matches case 2, it will go to case 3 and then exit out.</p><h2>Functions</h2><pre><code>function variable(parameter) {
   stuff;
   return result;
 }
@@ -60,8 +59,7 @@ Functions can be used as '<b>callback</b>'. Meaning you can do
 <code>functionName1(functionName2)</code>
 Most of the time, you shouldn't nee to use a callback function. Keep it simple.
 Usually API/librarys are the one that needs this.
-Fat arrow/arrow function</p><pre><code>s
-const add = (x, y) => {
+Fat arrow/arrow function</p><pre><code>const add = (x, y) => {
   return x + y;
 };
 </code></pre><p>Needs to be declared as a variable.
@@ -74,8 +72,7 @@ Can be more intuitive object scoping.</p><h2>Scope</h2><h2>Arrays</h2><p>Don't n
 This will print from 0 - 99
 <code>break</code> will break out of a loop
 <code>continue</code> can break out of single iter early
-<code>for (let element of array)</code></p><h2>Objects</h2><pre><code>s
-const person = {
+<code>for (let element of array)</code></p><h2>Objects</h2><pre><code>const person = {
   name: {
     first: context,
     last: context,
@@ -85,8 +82,7 @@ const person = {
 </code></pre><p>To access the first name. <code>person.name.first</code>
 if you don't know how to access something or if it's not there. <code>person.name?.first</code>
 Will check if there's a name variable. This helps to not throw an error if you reach into it wrong.
-Object Method</p><pre><code>s
-const person = {
+Object Method</p><pre><code>const person = {
 	name: {
 		first: context,
 		last: context
@@ -102,16 +98,14 @@ const person = {
 </code></pre><p><code>console.log(person.getfirstname())</code>
 Methods can mutate the objects. <code>person.older()</code> will increment age by 1.
 Can use string as keys
-<code>person.name['first']</code> this helps finding stuff more dynamic. we can use this to be an input</p><h2>Error</h2><pre><code>s
-try {
+<code>person.name['first']</code> this helps finding stuff more dynamic. we can use this to be an input</p><h2>Error</h2><pre><code>try {
 	stuff
 } catch (err) {
 	stuff
 } finally {
  stuff that will always run
 }
-</code></pre><p><code>finally</code> is rarely used b/c if you wanted to run something just put it after the try catch block. Use if you want to do something dangerous with error object.</p><pre><code>s
-function (){
+</code></pre><p><code>finally</code> is rarely used b/c if you wanted to run something just put it after the try catch block. Use if you want to do something dangerous with error object.</p><pre><code>function (){
 	does something
 	throw new Error('string')
 }

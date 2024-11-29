@@ -2,7 +2,7 @@
 
 ## Printing
 
-```py
+```
 print("Hello World")
 # Hello World
 
@@ -16,7 +16,7 @@ Use `" "`
 
 ## Comparisons
 
-```python
+```
 ==
 and
 or
@@ -24,7 +24,7 @@ or
 
 ## Types
 
-```py
+```
 int/float/complex
 string
 list, tuple, range
@@ -40,7 +40,7 @@ type(variable)
 
 ## Lists
 
-```python
+```
 list = [0,1,2,3,4,5,6,7,8,9]
 
 # slicing a list [start: stop :step]
@@ -58,7 +58,7 @@ Putting `:` in `[]` is called slicing
 Collection of data that is ordered and unchangable.  
 Sort of like a list w/ fixed size
 
-```py
+```
 tuple = ("yep", 69, True)
 single_element_tuple = ("nope",)
 multiple_tuples = [("1,2,3"),("4,5,6"),("7,8,9")]
@@ -72,7 +72,7 @@ multiple_tuples = [("1,2,3"),("4,5,6"),("7,8,9")]
 Basically maps in other languages  
 key -> value pair
 
-```py
+```
 person = {
     "age": 10
     "race": white
@@ -97,7 +97,7 @@ If there are duplicate keys, the old one will be overwritten
 
 unordered list but each element is unique
 
-```py
+```
 names = {'Bob', 'John', 'Sam'}
 
 # adding element
@@ -118,7 +118,7 @@ set(names)
 
 ## Errors
 
-```py
+```
 try:
     10/0
 

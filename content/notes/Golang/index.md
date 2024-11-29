@@ -1,4 +1,4 @@
-# Git
+# Golang
 
 It's mostly complete, but needs to be touched upon.
 
@@ -57,7 +57,7 @@ Both are string, walrus `:=` will "infer" the type to assign the variable
 
 ## IF ELSE
 
-```go
+```
 if length1 < length2{
     asd
 } else if length1 > length2{
@@ -74,7 +74,7 @@ if you want to make a variable inside the scope
 
 ## Switch Case
 
-```go
+```
 func name(plan string) float64{
     switch plan{
     case "free":
@@ -95,7 +95,7 @@ So if a function returns 2 values like `getXY()` but we only care about the x, w
 
 ## Named return
 
-```go
+```
 func getName()(first String, last String){
     //first and last are intialized with no values
     return //will return first and last if left blank
@@ -106,7 +106,7 @@ func getName()(first String, last String){
 
 Go doesn't have inheriance or classes, but struct's sort of allows data only inheriance
 
-```go
+```
 type car struct {
     model string
     speed int
@@ -126,7 +126,7 @@ fmt.Println(myCar.isCar())
 
 Memory layout matters
 
-```go
+```
 type stats struct {
     Reach    uint16
     NumPosts uint8
@@ -142,7 +142,7 @@ Notice how it's 16 then 8 then 8. if the memory is 8 then 16 then 8. It will add
 `empty := struct{}{}`  
 this is an empty struct.
 
-```go
+```
 type emptyStruct struct{}
 empty := emptyStruct{}
 ```
@@ -151,7 +151,7 @@ this is a named empty struct.
 They are used as unary values. Both of these take 0 bytes.  
 Example of a function for a structure.
 
-```go
+```
 func (myUser User) SendMessage (message string, messageLength int) (string, bool) {
     if messageLength <= myUser.Membership.MessageCharLimit {
         return message, true
@@ -162,7 +162,7 @@ func (myUser User) SendMessage (message string, messageLength int) (string, bool
 
 Send message is the method for User struct. It takes in message and messageLength as the parameter and returns a string and boolean. An example of using this method is
 
-```go
+```
 Bob := User{
 	//stuff
 }
@@ -181,7 +181,7 @@ map[string]any
 
 # Variadic
 
-```go
+```
 import package
 
 func sum(nums ...int) int{
@@ -195,14 +195,14 @@ func sum(nums ...int) int{
 
 Notice the `...` before int. It takes an abirtary number of final arguments.
 
-```go
+```
 // func make([]T, len, cap) []T
 mySlice := make([]int, 5, 10)
 ```
 
 # Append
 
-```go
+```
 i := make([]int, 3, 8)
 fmt.Println("len of i:", len(i))
 // len of i: 3
@@ -283,7 +283,7 @@ default:
 
 Code snippet
 
-```go
+```
 import "time"
 
 func processMessages(messages []string) []string {
@@ -310,7 +310,7 @@ func process(message string) string {
 
 # Generics
 
-```go
+```
 func last[T any](s []T) T {
 	if len(s) == 0 {
 		var zero T
@@ -327,7 +327,7 @@ in order for there to be a 0 generic.
 
 If you want only certain generics/types then you can make an interface
 
-```go
+```
 type numbers interface {
     ~int | ~int8 | ~int16 | ~int32 | ~int64 |
         ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
@@ -345,7 +345,7 @@ func doMath[T numbers](vals []T) T {
 
 ## JSON
 
-```go
+```
 type Item struct{
 	Id 					string `json:"id"`
 	Name			 string `json:"name"`
@@ -376,7 +376,7 @@ Turns a go struct into a `[]bytes`
 
 ## CRUD
 
-```go
+```
 func createPostReq(url, apiKey string, user User)(User, err){
 	jsonData, err := json.Marshal(data)
 	//err  check

@@ -30,7 +30,7 @@ Strict Equal: `===` This will compare value AND type `5 === '5' => false`
 
 # If/Else/
 
-```js
+```
 if (condition) {
 
 } else if {
@@ -46,7 +46,7 @@ Combines if else into 1 line
 
 ## Switch/Match Case
 
-```js
+```
 def matchThis(word) ={
 	switch(word){
 		case 'hello':
@@ -67,7 +67,7 @@ If you don't break in a case, it will "fall through". So if the word matches cas
 
 ## Functions
 
-```js
+```
 function variable(parameter) {
   stuff;
   return result;
@@ -81,7 +81,7 @@ Most of the time, you shouldn't nee to use a callback function. Keep it simple.
 Usually API/librarys are the one that needs this.
 Fat arrow/arrow function
 
-```js
+```
 const add = (x, y) => {
   return x + y;
 };
@@ -115,7 +115,7 @@ This will print from 0 - 99
 
 ## Objects
 
-```js
+```
 const person = {
   name: {
     first: context,
@@ -130,7 +130,7 @@ if you don't know how to access something or if it's not there. `person.name?.fi
 Will check if there's a name variable. This helps to not throw an error if you reach into it wrong.
 Object Method
 
-```js
+```
 const person = {
 	name: {
 		first: context,
@@ -153,7 +153,7 @@ Can use string as keys
 
 ## Error
 
-```js
+```
 try {
 	stuff
 } catch (err) {
@@ -165,7 +165,7 @@ try {
 
 `finally` is rarely used b/c if you wanted to run something just put it after the try catch block. Use if you want to do something dangerous with error object.
 
-```js
+```
 function (){
 	does something
 	throw new Error('string')

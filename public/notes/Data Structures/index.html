@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Data Structures </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gary Feng</a>
+        <ul class="nav-tabs">
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/notes/">Notes</a></li>
+            <li><a href="/hobbies">Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <div><h1>Data Structures</h1><h2>Stack</h2><p>Last In First Out (LIFO)</p><p>push: add item to top of stack
+pop: remove and return item from top of stack
+peek: return item from top of stack
+size: return the len of the stack</p><h2>Queue</h2><p>First in First Out (FIFO)</p><p>push: add to tail of queue
+pop: remove and return the oldest item (head)
+peek: return the item in front of queue
+size: return the len of the queue</p><h2>Linked List</h2><p>Have a self.head and optionally a self.tail.
+self.head.next refers to next node
+if 1 node then self.head and self.tail is the same.</p><h2>Graph</h2><p>Preorder traversal</p><ul><li>Append val to list</li><li>Recusively go down left</li><li>Recursively go down right</li><li>return list</li></ul><p>Postorder traversal</p><ul><li>recursively go down left</li><li>recursively go down right</li><li>append val to list</li><li>return list</li></ul><p>Inorder</p><ul><li>recursively go down left</li><li>append val to list</li><li>recurisvely go down right</li><li>return list</li></ul><h2>Trie</h2><p>A dictionary made of nested objects. Can help find words</p><pre><code>{
+	"h": {
+		"e": {
+			"l": {
+				"l": {
+					"o": {
+						"<i>": True
+					}
+				},
+				"p": {
+					"</i>": True
+				}
+			}
+		},
+		"i": {
+			"<i>": True
+		}
+	}
+	"w": {
+		"o": {
+			"r":{
+				"l":{
+					"d":{
+						"</i>": True
+					}
+				}
+			}
+			"w":{
+				"<i>": True
+			}
+		}
+	}
+}
+</i></code></pre><p>Can be used for autofills</p></div>
+    </article>
+
+    <footer class="footer">
+        <p>Contact me: <a href="mailto:g.feng.work@gmail.com">g.feng.work@gmail.com</a></p>
+        <p>
+            <a href="https://github.com/Chichigami" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://www.linkedin.com/in/gary-feng-847156241/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <a href="https://www.boot.dev/u/chichigami" target="_blank" rel="noopener noreferrer">Boot.dev</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

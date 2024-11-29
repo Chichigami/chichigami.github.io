@@ -2,7 +2,7 @@
 
 Pretty unorganized because it's mostly just terminal commands.
 
-```zsh
+```
 git status
 
 git add filepath
@@ -81,7 +81,7 @@ Procedure to contribute:
 5. commit and push to your repo
 6. create pull request on original repo
 
-```zsh
+```
 git clone https://github.com/chichigami/megacorp
 cd megacorp
 git branch
@@ -101,7 +101,7 @@ git commit
 
 # Stash
 
-```zsh
+```
 git stash
 git stash pop
 git stash list
@@ -113,7 +113,7 @@ git cherry-pick <commit-hash>
 
 Bisec helps you find which commit caused a bug
 
-```zsh
+```
 git bisect start
 git bisect good <commit-hash>
 git bisect bad <commit-hash>
@@ -121,7 +121,7 @@ git bisect bad <commit-hash>
 
 # Worktree
 
-```zsh
+```
 git worktree add <path> <branch>
 	optional: <branch> defaults to <path>'s name
 git worktree list
@@ -137,7 +137,7 @@ Can't switch branch that is being worked on in another tree
 Useful for versions of the application
 ie: v1.0, 2.0 etc
 
-```zsh
+```
 git tag
 	list all tags
 git tag -a "tag_name" -m "tag_description"

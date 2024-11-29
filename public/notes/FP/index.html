@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> 1. hi
+# 2. True
+# * age: 24
+# * f_name: Gary
+# * l_name: Feng </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gary Feng</a>
+        <ul class="nav-tabs">
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/notes/">Notes</a></li>
+            <li><a href="/hobbies">Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <div><h1>FP Basics</h1><p>Functional programming (FP) is a style/paradigm of programming. We compose functions instead of mutating/updating variables.</p><p>- FP is more about declaring what you want to happen vs how you want it to happen
+  <code>return walk(drink_water(create_person())))</code> - In this example, we never change the value of person variable, we compose functions that return new values with outermost function. <code>walk</code> returning final result.
+- Imperative/Procedural programming declares what and the how.
+  <code></code><code>
+  person = create_person()
+  person.drink_water(10)
+  person.walk()
+  </code><code></code></p><h2>Python not BiS</h2><p>Python isn't best for FP for various reasons</p><ul><li>No static typing</li><li>Mutable</li><li>No tail call optimization</li><li>Side effects are common</li><li>Imperative & OOP styles are more popular</li><li>Purity (pure functions) not enforced</li><li>Sum types hard to define</li><li>Pattern matching is weak</li></ul><h2>Immutability</h2><p>Immutability meaning not changable.
+FP wants data to be immutable.
+<b>WHY?</b>
+Easier to work with when 10 different functions have access to same variable. Can't accidentally change it, so easier for debugging.</p><h2>Declarative Programming</h2><p>FP wants to be declaraitive. Because of this programming style, FP tends to be more popular with mathimatical background.</p><p><code>avg = Σx/N</code></p><ul><li>Math equation isn't procedural. It's declarative.</li></ul><p>Imperative programming example</p><pre><code>def get_average(nums):
+    total = 0
+    for num in nums:
+        total += num
+    return total / len(nums)
+</code></pre><p>Declaritive Programming example</p><pre><code>def get_average(nums):
+    return sum(nums) / len(nums)
+</code></pre><h2>Classes vs Functions</h2><p>If unsure, default to functions.</p><blockquote>Classes encourage you to think about the world as a hierarchical collection of objects. Objects bundle behavior, data, and state together in a way that draws boundaries between instances of things, like chess pieces on a board.</blockquote><blockquote>Functions encourage you to think about the world as a series of data transformations. Functions take data as input and return a transformed output. For example, a function might take the entire state of a chess board and a move as inputs, and return the new state of the board as output.</blockquote><p>Both are just styles of programming. Nothing superior. They both share some of the ideas of OOP. <img src=":/fa39c6f1192341dc9feeb9a17d7efd3c" alt="5bbb7583b7ef7537d275580d1e2b6477.png"></img>
+Inheritance isn't part of FP due to the nature of mutable classes.</p><h2>Debugging</h2><p>It's hard to debug chains of functions. Break it down and print everything.</p><pre><code>def get_player_position(position, velocity, friction, gravity):
+    return calc_gravity(calc_friction(calc_move(position, velocity), friction), gravity)
+</code></pre><h1>First class and higher order functions</h1><p>First class function: You can use functions as values.
+Higher Order Functions: A function that accepts another function as an argument or returns a function.</p><p>First class function example</p><pre><code>def square(x):
+	return x <i> x
+f = square
+</i></code></pre><p>Higher order function example</p><p><code></code><code>
+def square(x):
+	return x </code><i> x</i></p><p>def my_map(func, list):
+	result = []
+	for number in list:
+		result.append(func(number))
+	return result</p><p>squared_list = my_map(square, [1, 2, 3, 4, 5])
+print(squared_list)
+# [1, 4, 9, 16, 25]
+<code></code><code></code></p><h2>Anonymous functions</h2><p>First class function. They have no name.
+In Python they're called lambda. Usually used for small, simple evals.</p><pre><code>add_one = lambda x: x + 1
+print(add_one(68))
+# 69
+</code></pre><h2>Common higher order functions</h2><p><code>Map Filter Reduce</code></p><p>In Python, <code>map</code> takes a function and iterable, and applies the function to each element in the iterable and returns a new iterable. Like the example above.</p><p><code>filter</code>: Takes a function and iterable and returns a new iterable that contains the resulting elements that returns true from the function.</p><p><code></code><code>
+def is_even(x):
+	return x % 2 == 0</code></p><p>evens = list(filter(is_even, [1, 2, 3, 4, 5]))
+print(evens)
+# [2, 4, 6]
+<code></code><code></code></p><p><code>Reduce</code>: From a library called functools. Takes a function and a list of values. Applies the function to each value in the list to accumulate a single result.</p><p><code></code><code>
+def add(sum, x):
+	print(f"sum_so_far: {sum_so_far}, x: {x}")
+	return sum + x</code></p><p>reduced_sum_list = functools.reduce(add, [1, 2, 3, 4, 5])
+# sum_so_far: 1, x: 2
+# sum_so_far: 3, x: 3
+# sum_so_far: 6, x: 4
+# sum_so_far: 10, x: 5
+print(reduced_sum_list)
+# 15
+<code></code><code></code></p><p>With these functions, we can avoid stateful iterations and mutations of variables.
+Another example</p><p><code></code><code>
+import functools</code></p><p>def factorial(n):
+    return functools.reduce(lambda x, y: x <i> y, range(1, n + 1))
+```</i></p><p>There are more functions like <code>.intersection()</code> and <code>.zip()</code></p><p>- Intersection takes 2 sets and will return a set where the elements are in both sets
+- Zip takes 2 iterables and return a new interable where each element is a tuple based on their indexes.
+  <code></code><code>
+  a = [1, 2, 3]
+  b = [4, 5, 6]
+  c = list(zip(a, b))
+  print(c)
+  # [(1, 4), (2, 5), (3, 5)]
+  </code><code></code></p><h1>Pure vs Impure function</h1><p>Pure functions <b>always return the same value given the same arguments</b> and <b>running them causes no side effects</b>.</p><blockquote><b>Pure functions don't do anything with anything that exists outside of their scope</b>
+Example of a pure function</blockquote><pre><code>def findMax(nums):
+    max_val = float('-inf')
+    for num in nums:
+        if max_val < num:
+            max_val = num
+    return max_val
+</code></pre><p>Example of an impure function</p><p><code></code><code>
+global_max = float('-inf')</code></p><p>def findMax(nums):
+    global global_max
+    for num in nums:
+        if global_max < num:
+            global_max = num
+<code></code><code></code></p><p>This function modifies the global_max variable.</p><p>Pure functions also do not perform I/O operations like reading from disk, accessing internet. or writing from console.</p><h2>Reference vs Value passed into a function</h2><p>When passing value into a function. It can be by reference or by value.</p><ul><li>Reference: The function has access to the value, and can change it</li><li>  - Lists, Dictionaries, Sets</li><li>Value: The funtion only has a copy of it. Changes to copy doesn't affect the original.</li><li>  - Integers, Floats, Strings, Booleans, Tuples</li></ul><p>There are some nuances to this, but most collections are passed as references (besides tuples) and most primitive types are passed by values.</p><p>Because of references in Python, we can accidentally mutate values, thus leading to impurity.</p><p>Biggest difference between good and great devs is how often they can incorporate pure functions into their code. Pure functions are easier to read, easier to reason, easier to test, easier to combine.</p><h2>No-Op</h2><p>This is an operation that does nothing. If a function doesn't return anything, it's probably impure because the only reason why it exist is to do a side effect.</p><pre><code>y = 1
+def add_to_y(x):
+	global y
+	y += x
+print(add_to_y(2))
+# 3
+</code></pre><p><code>global</code> allows Python to access the y outside of scope.</p><h2>Memoized</h2><p>It's sort of like caching. Trade memory usage for speed. If function is fast enough no need to cache.</p><pre><code>dict = {}
+if new in dict.keys():
+	dict[new] = compute[new]
+else:
+	return dict[new]
+</code></pre><h2>I/O containment and conclusion</h2><p>Because I/O are impure and overall some impurity is needed, this should be contained. So one part of the code base should be pure and another part should be impure.</p><h2>Function transformation</h2><p>Sort of like multiplication and squaring a number</p><pre><code>def functionName():
+	def innerFunction(param):
+		return whatYouWant
+	return functionName
+</code></pre><h2>Currying</h2><pre><code>function(1,2,3)
+function(1)(2)(3)
+</code></pre><h2>\<i>ARGS AND \</i>KWARGS</h2><p><code></code><code>
+def args_logger(</code><i>args, </i><b>kwargs):
+    for i in range(len(args)):
+        print(f'{i+1}. {args[i]}')
+    for key, value in sorted(kwargs.items()):
+        print(f'* {key}: {value}')</b></p><p>args_logger("hi", True, age=24, f_name=Gary, l_name=Feng)</p><h1>1. hi
+2. True
+<i> age: 24
+</i> f_name: Gary
+<i> l_name: Feng</i></h1><pre><code></code></pre><p>Accepts multiple arguments and key value dictionary argument</p><p><code></code><code>
+substitute(document, </code><b>edit)
+def substitute(document, insert_text, line_number, start, end):
+  #stuff</b></p><p>edit = {'insert_text': stuff, 'line_number': stuff, 'start': stuff, 'end': stuff}
+<code></code><code></code></p><p>Can name parameter based on the key string and it'll split it up</p></div>
+    </article>
+
+    <footer class="footer">
+        <p>Contact me: <a href="mailto:g.feng.work@gmail.com">g.feng.work@gmail.com</a></p>
+        <p>
+            <a href="https://github.com/Chichigami" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://www.linkedin.com/in/gary-feng-847156241/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <a href="https://www.boot.dev/u/chichigami" target="_blank" rel="noopener noreferrer">Boot.dev</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>
