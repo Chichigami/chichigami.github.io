@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> C </title>
+    <link href="/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Gary Feng</a>
+        <ul class="nav-tabs">
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/notes/">Notes</a></li>
+            <li><a href="/hobbies">Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <article>
+        <div><h1>C</h1><p>WIP</p><h2>Main</h2><pre><code>int main(){
+	return 0;
+}
+</code></pre><h2>Variables</h2><pre><code>int var
+float var
+char var
+char <i>var
+</i></code></pre><h2>Print</h2><pre><code>#include <stdio.h>
+printf("string goes here\n %d %s %c %f", int, char <i>, char, float)
+</i></code></pre><p>Need \n</p><h2>Operations</h2><pre><code>+ // addition
+- // subtraction
+<i> // multiplication
+/ // division
+% // modulus (remainder)
+++ // increment
+-- // decrement
+--
+== // equal to
+!= // not equal to
+> // greater than
+< // less than
+>= // greater than or equal to
+<= // less than or equal to
+--
+&& // logical AND
+|| // logical OR
+! // logical NOT
+--
+& // bitwise AND
+| // bitwise OR
+^ // bitwise XOR
+~ // bitwise NOT
+<< // left shift
+>> // right shift
+--
+= // simple assignment
++= // add and assign
+-= // subtract and assign
+</i>= // multiply and assign
+/= // divide and assign
+%= // modulus and assign
+&= // bitwise AND and assign
+|= // bitwise OR and assign
+^= // bitwise XOR and assign
+<<= // left shift and assign
+>>= // right shift and assign
+--
+& // address-of operator
+<i> // dereference operator
+-> // structure pointer operator
+. // structure member operator
+?: // ternary operator
+sizeof // size operator
+</i></code></pre><h2>Loops</h2><pre><code>while (condition){
+    //do something
+}
+    //do something
+do {
+    //do something
+} while (condition);
+</code></pre><p>Do while loops are usually common in C macros. It will always run once.</p><h2>Pointers</h2><p><code></code><i>` = points to a variable</i></p><p>& = address of variable</p><h2>Structs</h2><pre><code>struct Coord = {
+	int x;
+	int y;
+	int z;
+};
+typedef struct Coord {
+	int x;
+	int y;
+	int z;
+} coord_t;
+struct Coord new_coord = {.x = 1, .y = 2, .z = 3};
+coord_t new_coord = {.x = 1, .y = 2, .z = 3};
+</code></pre><h2>Forward declaration</h2><p>If you want to have a child parent struct, you will need to declare it otherwise compiler won't like it.</p><pre><code>typedef struct Employee employee_t;
+typedef struct Department department_t;
+typedef struct Employee {
+  int id;
+  char <i>name;
+  department_t </i>department;
+} employee_t;
+typedef struct Department {
+  char <i>name;
+  employee_t </i>manager;
+} department_t;
+</code></pre><h2>ENUM</h2><pre><code>typedef enum Color {
+	RED,
+	ORANGE,
+	YELLOW,
+	GREEN,
+	BLUE,
+	INDIGO,
+	VIOLET,
+} color_t
+switch (color){
+	case RED:
+		break;
+	default:
+		break;
+}
+</code></pre><h2>UNIONS</h2><pre><code>typedef union PacketHeader{
+  struct {
+    uint16_t src_port;
+    uint16_t dest_port;
+    uint32_t seq_num;
+  } tcp_header;
+  uint8_t raw[8];
+} packet_header_t;
+</code></pre></div>
+    </article>
+
+    <footer class="footer">
+        <p>Contact me: <a href="mailto:g.feng.work@gmail.com">g.feng.work@gmail.com</a></p>
+        <p>
+            <a href="https://github.com/Chichigami" target="_blank" rel="noopener noreferrer">GitHub</a> |
+            <a href="https://www.linkedin.com/in/gary-feng-847156241/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <a href="https://www.boot.dev/u/chichigami" target="_blank" rel="noopener noreferrer">Boot.dev</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>

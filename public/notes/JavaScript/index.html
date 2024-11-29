@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> If/Else/ </title>
+    <title> JavaScript </title>
     <link href="/index.css" rel="stylesheet">
 </head>
 
@@ -33,12 +33,16 @@ Null: <code>null</code></p><h2>Logical Operators</h2><p>And: <code>&&</code>
 Or: <code>||</code>
 Not: <code>!</code>
 Loose Equal: <code>==</code> This will compare value <code>5 == '5' => true</code>
-Strict Equal: <code>===</code> This will compare value AND type <code>5 === '5' => false</code></p><h1>If/Else/</h1><p><code></code><code>
-if (condition) {</code></p><p>} else if {</p><p>} else {</p><p>}
-<code></code><code></code></p><p><b>Ternary</b>
+Strict Equal: <code>===</code> This will compare value AND type <code>5 === '5' => false</code></p><h2>If/Else/</h2><pre><code>if (condition) {
+	//do something
+} else if {
+	//do something
+} else {
+	//do something
+}
+</code></pre><p><b>Ternary</b>
 Combines if else into 1 line
-<code>let variable_name = condition ? True : False</code></p><h2>Switch/Match Case</h2><p><code></code><code>
-def matchThis(word) ={
+<code>let variable_name = condition ? True : False</code></p><h2>Switch/Match Case</h2><pre><code>def matchThis(word) ={
 	switch(word){
 		case 'hello':
 			//do something
@@ -50,7 +54,8 @@ def matchThis(word) ={
 		default:
 			console.log(word)
 	}
-}</code></p><pre><code></code></pre><p>If you don't break in a case, it will "fall through". So if the word matches case 2, it will go to case 3 and then exit out.</p><h2>Functions</h2><pre><code>function variable(parameter) {
+}
+</code></pre><p>If you don't break in a case, it will "fall through". So if the word matches case 2, it will go to case 3 and then exit out.</p><h2>Functions</h2><pre><code>function variable(parameter) {
   stuff;
   return result;
 }

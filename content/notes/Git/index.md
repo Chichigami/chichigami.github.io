@@ -4,42 +4,29 @@ Pretty unorganized because it's mostly just terminal commands.
 
 ```
 git status
-
 git add filepath
-
 git commit -m "message"
-
 git commit --amend -m "change last commit message"
-
 #see history
 git log
-
 git cat-file -p hash
 //will return the blob of the commit
-
 git config --add --global key value
 	--global
 	--local
 	~/.gitconfig
-
 git config --get <key>
 git config --unset <key>
 git config --unset-all <section.key>
 git config --remove-section <section>
-
 git branch my_new_branch //make branch
 git switch -c my_new_branch //make and switch to branch
 	-c = create
-
 git switch vs git checkout
 	same thing. checkout is older. boomers using checkout
-
 git log --oneline --graph --all
-
 git switch -c update_dune COMMITHASH
-
 git reset --hard
-
 //remote
 git remote add <name> <uri>
 //one true repo
@@ -58,11 +45,9 @@ filename
 directory
 *.txt match anything that ends with .txt
 /main.py will ignore main.py in the directory with .gitignore
-
 *.txt
 !important.txt
 //will ignore all .txt file except important
-
 use # to comment inside the .gitignore file
 ```
 

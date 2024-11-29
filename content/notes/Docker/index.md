@@ -16,16 +16,11 @@ Uses an image to create a container
 ```
 docker [OPTIONS] command
 docker help
-
 docker run -d -p 80:80 docker/getting-started:latest
 docker ps - shows what dockers are running
-
-
 docker stop CONTAINER_ID
 docker kill CONTAINER_ID
-
 docker images
-
 docker exec CONTAINER_ID ls
 	list dirs in that container
 ```

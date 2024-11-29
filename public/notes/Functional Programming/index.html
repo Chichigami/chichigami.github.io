@@ -47,35 +47,36 @@ Inheritance isn't part of FP due to the nature of mutable classes.</p><h2>Debugg
 Higher Order Functions: A function that accepts another function as an argument or returns a function.</p><p>First class function example</p><pre><code>def square(x):
 	return x <i> x
 f = square
-</i></code></pre><p>Higher order function example</p><p><code></code><code>
-def square(x):
-	return x </code><i> x</i></p><p>def my_map(func, list):
+</i></code></pre><p>Higher order function example</p><pre><code>def square(x):
+	return x <i> x
+def my_map(func, list):
 	result = []
 	for number in list:
 		result.append(func(number))
-	return result</p><p>squared_list = my_map(square, [1, 2, 3, 4, 5])
+	return result
+squared_list = my_map(square, [1, 2, 3, 4, 5])
 print(squared_list)
 # [1, 4, 9, 16, 25]
-<code></code><code></code></p><h2>Anonymous functions</h2><p>First class function. They have no name.
+</i></code></pre><h2>Anonymous functions</h2><p>First class function. They have no name.
 In Python they're called lambda. Usually used for small, simple evals.</p><pre><code>add_one = lambda x: x + 1
 print(add_one(68))
 # 69
-</code></pre><h2>Common higher order functions</h2><p><code>Map Filter Reduce</code></p><p>In Python, <code>map</code> takes a function and iterable, and applies the function to each element in the iterable and returns a new iterable. Like the example above.</p><p><code>filter</code>: Takes a function and iterable and returns a new iterable that contains the resulting elements that returns true from the function.</p><p><code></code><code>
-def is_even(x):
-	return x % 2 == 0</code></p><p>evens = list(filter(is_even, [1, 2, 3, 4, 5]))
+</code></pre><h2>Common higher order functions</h2><p><code>Map Filter Reduce</code></p><p>In Python, <code>map</code> takes a function and iterable, and applies the function to each element in the iterable and returns a new iterable. Like the example above.</p><p><code>filter</code>: Takes a function and iterable and returns a new iterable that contains the resulting elements that returns true from the function.</p><pre><code>def is_even(x):
+	return x % 2 == 0
+evens = list(filter(is_even, [1, 2, 3, 4, 5]))
 print(evens)
 # [2, 4, 6]
-<code></code><code></code></p><p><code>Reduce</code>: From a library called functools. Takes a function and a list of values. Applies the function to each value in the list to accumulate a single result.</p><p><code></code><code>
-def add(sum, x):
+</code></pre><p><code>Reduce</code>: From a library called functools. Takes a function and a list of values. Applies the function to each value in the list to accumulate a single result.</p><pre><code>def add(sum, x):
 	print(f"sum_so_far: {sum_so_far}, x: {x}")
-	return sum + x</code></p><p>reduced_sum_list = functools.reduce(add, [1, 2, 3, 4, 5])
+	return sum + x
+reduced_sum_list = functools.reduce(add, [1, 2, 3, 4, 5])
 # sum_so_far: 1, x: 2
 # sum_so_far: 3, x: 3
 # sum_so_far: 6, x: 4
 # sum_so_far: 10, x: 5
 print(reduced_sum_list)
 # 15
-<code></code><code></code></p><p>With these functions, we can avoid stateful iterations and mutations of variables.
+</code></pre><p>With these functions, we can avoid stateful iterations and mutations of variables.
 Another example</p><p><code></code><code>
 import functools</code></p><p>def factorial(n):
     return functools.reduce(lambda x, y: x <i> y, range(1, n + 1))
@@ -94,13 +95,13 @@ Example of a pure function</blockquote><pre><code>def findMax(nums):
         if max_val < num:
             max_val = num
     return max_val
-</code></pre><p>Example of an impure function</p><p><code></code><code>
-global_max = float('-inf')</code></p><p>def findMax(nums):
+</code></pre><p>Example of an impure function</p><pre><code>global_max = float('-inf')
+def findMax(nums):
     global global_max
     for num in nums:
         if global_max < num:
             global_max = num
-<code></code><code></code></p><p>This function modifies the global_max variable.</p><p>Pure functions also do not perform I/O operations like reading from disk, accessing internet. or writing from console.</p><h2>Reference vs Value passed into a function</h2><p>When passing value into a function. It can be by reference or by value.</p><ul><li>Reference: The function has access to the value, and can change it</li><li>  - Lists, Dictionaries, Sets</li><li>Value: The funtion only has a copy of it. Changes to copy doesn't affect the original.</li><li>  - Integers, Floats, Strings, Booleans, Tuples</li></ul><p>There are some nuances to this, but most collections are passed as references (besides tuples) and most primitive types are passed by values.</p><p>Because of references in Python, we can accidentally mutate values, thus leading to impurity.</p><p>Biggest difference between good and great devs is how often they can incorporate pure functions into their code. Pure functions are easier to read, easier to reason, easier to test, easier to combine.</p><h2>No-Op</h2><p>This is an operation that does nothing. If a function doesn't return anything, it's probably impure because the only reason why it exist is to do a side effect.</p><pre><code>y = 1
+</code></pre><p>This function modifies the global_max variable.</p><p>Pure functions also do not perform I/O operations like reading from disk, accessing internet. or writing from console.</p><h2>Reference vs Value passed into a function</h2><p>When passing value into a function. It can be by reference or by value.</p><ul><li>Reference: The function has access to the value, and can change it</li><li>  - Lists, Dictionaries, Sets</li><li>Value: The funtion only has a copy of it. Changes to copy doesn't affect the original.</li><li>  - Integers, Floats, Strings, Booleans, Tuples</li></ul><p>There are some nuances to this, but most collections are passed as references (besides tuples) and most primitive types are passed by values.</p><p>Because of references in Python, we can accidentally mutate values, thus leading to impurity.</p><p>Biggest difference between good and great devs is how often they can incorporate pure functions into their code. Pure functions are easier to read, easier to reason, easier to test, easier to combine.</p><h2>No-Op</h2><p>This is an operation that does nothing. If a function doesn't return anything, it's probably impure because the only reason why it exist is to do a side effect.</p><pre><code>y = 1
 def add_to_y(x):
 	global y
 	y += x
@@ -126,11 +127,11 @@ def args_logger(</code><i>args, </i><b>kwargs):
 2. True
 <i> age: 24
 </i> f_name: Gary
-<i> l_name: Feng</i></h1><pre><code></code></pre><p>Accepts multiple arguments and key value dictionary argument</p><p><code></code><code>
-substitute(document, </code><b>edit)
+<i> l_name: Feng</i></h1><pre><code></code></pre><p>Accepts multiple arguments and key value dictionary argument</p><pre><code>substitute(document, <b>edit)
 def substitute(document, insert_text, line_number, start, end):
-  #stuff</b></p><p>edit = {'insert_text': stuff, 'line_number': stuff, 'start': stuff, 'end': stuff}
-<code></code><code></code></p><p>Can name parameter based on the key string and it'll split it up</p></div>
+  #stuff
+edit = {'insert_text': stuff, 'line_number': stuff, 'start': stuff, 'end': stuff}
+</b></code></pre><p>Can name parameter based on the key string and it'll split it up</p></div>
     </article>
 
     <footer class="footer">

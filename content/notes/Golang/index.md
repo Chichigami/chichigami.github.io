@@ -6,19 +6,13 @@ It's mostly complete, but needs to be touched upon.
 
 ```
 bool
-
 string
-
 int  int8  int16  int32  int64
 uint uint8 uint16 uint32 uint64 uintptr
-
 byte // alias for uint8
-
 rune // alias for int32
      // represents a Unicode code point
-
 float32 float64
-
 complex64 complex128
 ```
 
@@ -26,10 +20,8 @@ complex64 complex128
 
 ```
 import fmt
-
 fmt.Printf("string")
 fmt.Printf(variable)
-
 %v -> value
 %s -> string
 %d -> int
@@ -43,13 +35,10 @@ fmt.Sprintf("Hello %s", "world")
 ```
 var first_name string = "Gary"
 last_name := "Feng"
-
 var age = 2.6
 short_age := int(age)
-
 //age = 24.6
 //short_age = 24
-
 const gender = "M"
 ```
 
@@ -65,7 +54,6 @@ if length1 < length2{
 } else {
     asd
 }
-
 if length := getLength(variable); length < 1 {
 }
 ```
@@ -114,12 +102,10 @@ type car struct {
     color string
     cost float64
 }
-
 func (myCar car) isCar() bool{
     //check if myCar is a valid car
     return true or false
 }
-
 fmt.Println(myCar.isCar())
 //true or false
 ```
@@ -134,9 +120,9 @@ type stats struct {
 }
 ```
 
-![b7604073197af25f77e411a6daf35aed.png](:/afb8eaeab1de470f8eee0074ca9f77b4)  
+![b7604073197af25f77e411a6daf35aed.png](/images/b7604073197af25f77e411a6daf35aed.png)
 Notice how it's 16 then 8 then 8. if the memory is 8 then 16 then 8. It will add padding which will waste memory space.  
-![f7fb5aa446ab886a231c2fda12441add.png](:/f777faa76179486486b181d2b8f64d9c)  
+![f7fb5aa446ab886a231c2fda12441add.png](/images/f7fb5aa446ab886a231c2fda12441add.png)
 [reflect package](https://pkg.go.dev/reflect) can help debug [memory layout](https://go101.org/article/memory-layout.html)
 
 `empty := struct{}{}`  
@@ -179,11 +165,10 @@ A collection of method signatures.
 map[string]any
 ```
 
-# Variadic
+## Variadic
 
 ```
 import package
-
 func sum(nums ...int) int{
 	sum := 0
 	for i := 0; i < len(nums); i++{
@@ -200,7 +185,7 @@ Notice the `...` before int. It takes an abirtary number of final arguments.
 mySlice := make([]int, 5, 10)
 ```
 
-# Append
+## Append
 
 ```
 i := make([]int, 3, 8)
@@ -228,7 +213,7 @@ fmt.Println("g:", g)
 // g: [0 0 0 5]
 ```
 
-# Slices (Arrays)
+## Slices (Arrays)
 
 `var myInts[10]`
 slice of size 10
@@ -236,7 +221,7 @@ slice of size 10
 slices
 `primes[1:4]`
 
-# Loops
+## Loops
 
 `for i := 0; i < len(something); i++{
 }`
@@ -244,17 +229,21 @@ slices
 `for i, ele := range slice{
 }`
 
-# Maps
+## Maps
 
 to make a map in go, need to use make method
 `dict := make(map[string]int)`
 this is a map of key string to int value.
 
-# Pointers
+## Pointers
 
-Uses `*` and `&`
+Uses \* and &
 
-# Channels
+```
+ADD CODE SNIPPET
+```
+
+## Channels
 
 Channel creation
 `ch <- make(chan int, len(size))`
@@ -285,7 +274,6 @@ Code snippet
 
 ```
 import "time"
-
 func processMessages(messages []string) []string {
 	ch := make(chan string, len(messages))
 	for _, message := range messages{
@@ -299,16 +287,15 @@ func processMessages(messages []string) []string {
 	}
 	return processedMsgs
 }
-
 func process(message string) string {
 	time.Sleep(1 * time.Second)
 	return message + "-processed"
 }
 ```
 
-# Mutexes
+## Mutexes
 
-# Generics
+## Generics
 
 ```
 func last[T any](s []T) T {
@@ -333,15 +320,18 @@ type numbers interface {
         ~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
         ~float32 | ~float64 |
 }
-
 func doMath[T numbers](vals []T) T {
 	//do something and return a T type
 }
 ```
 
-# Enum
+## Enum
 
-# HTTPS
+ADD CODE SNIPPET
+
+## HTTPS
+
+ADD CODE SNIPPET
 
 ## JSON
 
@@ -351,14 +341,10 @@ type Item struct{
 	Name			 string `json:"name"`
 	ItemLevel int		 `json:"item_level"`
 }
-
-
 func getJSONtoGoStruct(url string) ([]Item, error){
 	res, res_err := http.Get(url)
 	defer res.Body.Close() //to prevent mem issue
 	var items []Items
-
-
 	decoder := json.NewDecoder(res.Body)
 	err := decoder.Decode(&items)
 ------------------------------------OR----------------------------------------
@@ -380,24 +366,18 @@ Turns a go struct into a `[]bytes`
 func createPostReq(url, apiKey string, user User)(User, err){
 	jsonData, err := json.Marshal(data)
 	//err  check
-
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	//err check
-
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("X-API-Key", apiKey)
-
 	client := &http.Client{}
 	res, err := client.Do(req)
 	//err check
-
 	defer res.Body.Close()
-
 	var newUser User
 	decoder := json.NewDecoder(res.Body)
 	err = decoder.Decode(&newUser)
 	//err check
-
 	return data, nil
 }
 ```
@@ -410,7 +390,6 @@ brew services start postgresql
 /opt/homebrew/opt/postgresql@16/bin/psql --version
 echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
 psql --version
-
 brew services start postgresql@16
 psql postgres
 CREATE DATABASE gator;

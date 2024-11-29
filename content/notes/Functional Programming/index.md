@@ -94,13 +94,11 @@ Higher order function example
 ```
 def square(x):
 	return x * x
-
 def my_map(func, list):
 	result = []
 	for number in list:
 		result.append(func(number))
 	return result
-
 squared_list = my_map(square, [1, 2, 3, 4, 5])
 print(squared_list)
 # [1, 4, 9, 16, 25]
@@ -128,7 +126,6 @@ In Python, `map` takes a function and iterable, and applies the function to each
 ```
 def is_even(x):
 	return x % 2 == 0
-
 evens = list(filter(is_even, [1, 2, 3, 4, 5]))
 print(evens)
 # [2, 4, 6]
@@ -140,7 +137,6 @@ print(evens)
 def add(sum, x):
 	print(f"sum_so_far: {sum_so_far}, x: {x}")
 	return sum + x
-
 reduced_sum_list = functools.reduce(add, [1, 2, 3, 4, 5])
 # sum_so_far: 1, x: 2
 # sum_so_far: 3, x: 3
@@ -192,7 +188,6 @@ Example of an impure function
 
 ```
 global_max = float('-inf')
-
 def findMax(nums):
     global global_max
     for num in nums:
@@ -293,7 +288,6 @@ Accepts multiple arguments and key value dictionary argument
 substitute(document, **edit)
 def substitute(document, insert_text, line_number, start, end):
   #stuff
-
 edit = {'insert_text': stuff, 'line_number': stuff, 'start': stuff, 'end': stuff}
 ```
 

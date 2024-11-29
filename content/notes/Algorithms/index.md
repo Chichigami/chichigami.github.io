@@ -35,7 +35,7 @@ Split the list in 2 halves all the way down to 1 element. Then recombines it bac
 
 Visit all veritces and find the path with minimum distance
 
-```py
+```
 class Graph:
 	def __init__(self):
 		self.graph = {}

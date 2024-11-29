@@ -6,7 +6,6 @@ These notes are incomplete because it was mostly for a project. This lanaguage i
 
 ```
 import scala.io.StdIn.readLine
-
 println("Hello World")
 val firstname: String = readLine()
 val lastname: String = readLine()

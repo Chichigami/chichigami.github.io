@@ -28,15 +28,15 @@ Not: `!`
 Loose Equal: `==` This will compare value `5 == '5' => true`
 Strict Equal: `===` This will compare value AND type `5 === '5' => false`
 
-# If/Else/
+## If/Else/
 
 ```
 if (condition) {
-
+	//do something
 } else if {
-
+	//do something
 } else {
-
+	//do something
 }
 ```
 
@@ -60,7 +60,6 @@ def matchThis(word) ={
 			console.log(word)
 	}
 }
-
 ```
 
 If you don't break in a case, it will "fall through". So if the word matches case 2, it will go to case 3 and then exit out.

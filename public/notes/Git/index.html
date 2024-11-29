@@ -19,31 +19,44 @@
     </nav>
 
     <article>
-        <div><h1>Git</h1><p>Pretty unorganized because it's mostly just terminal commands.</p><p><code></code><code>
-git status</code></p><p>git add filepath</p><p>git commit -m "message"</p><p>git commit --amend -m "change last commit message"</p><p>#see history
-git log</p><p>git cat-file -p hash
-//will return the blob of the commit</p><p>git config --add --global key value
+        <div><h1>Git</h1><p>Pretty unorganized because it's mostly just terminal commands.</p><pre><code>git status
+git add filepath
+git commit -m "message"
+git commit --amend -m "change last commit message"
+#see history
+git log
+git cat-file -p hash
+//will return the blob of the commit
+git config --add --global key value
 	--global
 	--local
-	~/.gitconfig</p><p>git config --get <key>
+	~/.gitconfig
+git config --get <key>
 git config --unset <key>
 git config --unset-all <section.key>
-git config --remove-section <section></p><p>git branch my_new_branch //make branch
+git config --remove-section <section>
+git branch my_new_branch //make branch
 git switch -c my_new_branch //make and switch to branch
-	-c = create</p><p>git switch vs git checkout
-	same thing. checkout is older. boomers using checkout</p><p>git log --oneline --graph --all</p><p>git switch -c update_dune COMMITHASH</p><p>git reset --hard</p><p>//remote
+	-c = create
+git switch vs git checkout
+	same thing. checkout is older. boomers using checkout
+git log --oneline --graph --all
+git switch -c update_dune COMMITHASH
+git reset --hard
+//remote
 git remote add <name> <uri>
 //one true repo
 git log <name>/<branch>
-<code></code><code></code></p><p><img src=":/edc2926062ec4d5aaf2088d826877e19" alt="338c3e078618e3531076fde5e9a358de.png"></img></p><h2>.gitignore</h2><p>a file hidden so that git ignores whatever is in the file
-Things that can be inside of .gitignore</p><p><code></code><code>
-filename
+</code></pre><p><img src=":/edc2926062ec4d5aaf2088d826877e19" alt="338c3e078618e3531076fde5e9a358de.png"></img></p><h2>.gitignore</h2><p>a file hidden so that git ignores whatever is in the file
+Things that can be inside of .gitignore</p><pre><code>filename
 directory
-</code><i>.txt match anything that ends with .txt
-/main.py will ignore main.py in the directory with .gitignore</i></p><p><i>.txt
+<i>.txt match anything that ends with .txt
+/main.py will ignore main.py in the directory with .gitignore
+</i>.txt
 !important.txt
-//will ignore all .txt file except important</i></p><p>use # to comment inside the .gitignore file
-<code></code><code></code></p><h1>Git 2</h1><h1>Fork</h1><p>Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.</p><p>Procedure to contribute:</p><ol><li>fork repo</li><li>clone repo</li><li>make new branch with a name ie: your_feature</li><li>make changes</li><li>commit and push to your repo</li><li>create pull request on original repo</li></ol><pre><code>git clone https://github.com/chichigami/megacorp
+//will ignore all .txt file except important
+use # to comment inside the .gitignore file
+</code></pre><h1>Git 2</h1><h1>Fork</h1><p>Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.</p><p>Procedure to contribute:</p><ol><li>fork repo</li><li>clone repo</li><li>make new branch with a name ie: your_feature</li><li>make changes</li><li>commit and push to your repo</li><li>create pull request on original repo</li></ol><pre><code>git clone https://github.com/chichigami/megacorp
 cd megacorp
 git branch
 git switch or git checkout
