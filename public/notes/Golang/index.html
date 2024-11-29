@@ -202,11 +202,32 @@ in order for there to be a 0 generic.</p><h2>Constraints</h2><p>If you want only
 func doMath<a href="vals []T">T numbers</a> T {
 	//do something and return a T type
 }
-</code></pre><h2>Enum</h2><p>ADD CODE SNIPPET</p><h2>HTTPS</h2><p>ADD CODE SNIPPET</p><h2>JSON</h2><p><code></code><code>
-type Item struct{
-	Id 					string </code>json:"id"<code>
-	Name			 string </code>json:"name"<code>
-	ItemLevel int		 </code>json:"item_level"<code>
+</code></pre><h2>Enum</h2><p>Not that well supported in Go.</p><pre><code>type perm string
+const (
+    Read  perm = "read"
+    Write perm = "write"
+    Exec  perm = "execute"
+)
+var Admin = "admin"
+var User = perm("user")
+func checkPermission(p perm) {
+    // check the permission
+}
+type emailStatus int
+const (
+	emailBounced emailStatus = iota
+	emailInvalid
+	emailDelivered
+	emailOpened
+)
+</code></pre><p><code>iota</code> will make
+emailBounces: 0
+emailInvalid: 1
+emailDelivered: 2
+emailOpened: 3</p><h2>HTTPS</h2><p>ADD CODE SNIPPET</p><h2>JSON</h2><pre><code>type Item struct{
+	Id 					string <code>json:"id"</code>
+	Name			 string <code>json:"name"</code>
+	ItemLevel int		 <code>json:"item_level"</code>
 }
 func getJSONtoGoStruct(url string) ([]Item, error){
 	res, res_err := http.Get(url)
@@ -216,9 +237,10 @@ func getJSONtoGoStruct(url string) ([]Item, error){
 	err := decoder.Decode(&items)
 ------------------------------------OR----------------------------------------
 	data []byte, err := io.ReadAll(res.Body)
-	json.Unmarshal(data, &items)</code></p><p>return items
+	json.Unmarshal(data, &items)
+	return items
 }
-<code></code><code></code></p><p>Makes a GET request and turns the result into a Go struct</p><p><code>data, err := json.Marshal(items)</code>
+</code></pre><p>Makes a GET request and turns the result into a Go struct</p><p><code>data, err := json.Marshal(items)</code>
 Turns a go struct into a <code>[]bytes</code></p><h2>CRUD</h2><pre><code>func createPostReq(url, apiKey string, user User)(User, err){
 	jsonData, err := json.Marshal(data)
 	//err  check

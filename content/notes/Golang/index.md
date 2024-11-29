@@ -327,7 +327,34 @@ func doMath[T numbers](vals []T) T {
 
 ## Enum
 
-ADD CODE SNIPPET
+Not that well supported in Go.
+
+```
+type perm string
+const (
+    Read  perm = "read"
+    Write perm = "write"
+    Exec  perm = "execute"
+)
+var Admin = "admin"
+var User = perm("user")
+func checkPermission(p perm) {
+    // check the permission
+}
+type emailStatus int
+const (
+	emailBounced emailStatus = iota
+	emailInvalid
+	emailDelivered
+	emailOpened
+)
+```
+
+`iota` will make
+emailBounces: 0
+emailInvalid: 1
+emailDelivered: 2
+emailOpened: 3
 
 ## HTTPS
 
@@ -350,7 +377,6 @@ func getJSONtoGoStruct(url string) ([]Item, error){
 ------------------------------------OR----------------------------------------
 	data []byte, err := io.ReadAll(res.Body)
 	json.Unmarshal(data, &items)
-
 	return items
 }
 ```
