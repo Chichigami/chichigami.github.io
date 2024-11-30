@@ -4,11 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> 1. hi
-# 2. True
-# * age: 24
-# * f_name: Gary
-# * l_name: Feng </title>
+    <title> Pure vs Impure function </title>
     <link href="/index.css" rel="stylesheet">
 </head>
 
@@ -25,12 +21,10 @@
     <article>
         <div><h1>FP Basics</h1><p>Functional programming (FP) is a style/paradigm of programming. We compose functions instead of mutating/updating variables.</p><p>- FP is more about declaring what you want to happen vs how you want it to happen
   <code>return walk(drink_water(create_person())))</code> - In this example, we never change the value of person variable, we compose functions that return new values with outermost function. <code>walk</code> returning final result.
-- Imperative/Procedural programming declares what and the how.
-  <code></code><code>
-  person = create_person()
-  person.drink_water(10)
-  person.walk()
-  </code><code></code></p><h2>Python not BiS</h2><p>Python isn't best for FP for various reasons</p><ul><li>No static typing</li><li>Mutable</li><li>No tail call optimization</li><li>Side effects are common</li><li>Imperative & OOP styles are more popular</li><li>Purity (pure functions) not enforced</li><li>Sum types hard to define</li><li>Pattern matching is weak</li></ul><h2>Immutability</h2><p>Immutability meaning not changable.
+- Imperative/Procedural programming declares what and the how.</p><pre><code>person = create_person()
+person.drink_water(10)
+person.walk()
+</code></pre><h2>Python not BiS</h2><p>Python isn't best for FP for various reasons</p><ul><li>No static typing</li><li>Mutable</li><li>No tail call optimization</li><li>Side effects are common</li><li>Imperative & OOP styles are more popular</li><li>Purity (pure functions) not enforced</li><li>Sum types hard to define</li><li>Pattern matching is weak</li></ul><h2>Immutability</h2><p>Immutability meaning not changable.
 FP wants data to be immutable.
 <b>WHY?</b>
 Easier to work with when 10 different functions have access to same variable. Can't accidentally change it, so easier for debugging.</p><h2>Declarative Programming</h2><p>FP wants to be declaraitive. Because of this programming style, FP tends to be more popular with mathimatical background.</p><p><code>avg = Σx/N</code></p><ul><li>Math equation isn't procedural. It's declarative.</li></ul><p>Imperative programming example</p><pre><code>def get_average(nums):
@@ -40,7 +34,7 @@ Easier to work with when 10 different functions have access to same variable. Ca
     return total / len(nums)
 </code></pre><p>Declaritive Programming example</p><pre><code>def get_average(nums):
     return sum(nums) / len(nums)
-</code></pre><h2>Classes vs Functions</h2><p>If unsure, default to functions.</p><blockquote>Classes encourage you to think about the world as a hierarchical collection of objects. Objects bundle behavior, data, and state together in a way that draws boundaries between instances of things, like chess pieces on a board.</blockquote><blockquote>Functions encourage you to think about the world as a series of data transformations. Functions take data as input and return a transformed output. For example, a function might take the entire state of a chess board and a move as inputs, and return the new state of the board as output.</blockquote><p>Both are just styles of programming. Nothing superior. They both share some of the ideas of OOP. <img src=":/fa39c6f1192341dc9feeb9a17d7efd3c" alt="5bbb7583b7ef7537d275580d1e2b6477.png"></img>
+</code></pre><h2>Classes vs Functions</h2><p>If unsure, default to functions.</p><blockquote>Classes encourage you to think about the world as a hierarchical collection of objects. Objects bundle behavior, data, and state together in a way that draws boundaries between instances of things, like chess pieces on a board.</blockquote><blockquote>Functions encourage you to think about the world as a series of data transformations. Functions take data as input and return a transformed output. For example, a function might take the entire state of a chess board and a move as inputs, and return the new state of the board as output.</blockquote><p>Both are just styles of programming. Nothing superior. They both share some of the ideas of OOP. <img src="/images/5bbb7583b7ef7537d275580d1e2b6477.png" alt="5bbb7583b7ef7537d275580d1e2b6477.png"></img>
 Inheritance isn't part of FP due to the nature of mutable classes.</p><h2>Debugging</h2><p>It's hard to debug chains of functions. Break it down and print everything.</p><pre><code>def get_player_position(position, velocity, friction, gravity):
     return calc_gravity(calc_friction(calc_move(position, velocity), friction), gravity)
 </code></pre><h1>First class and higher order functions</h1><p>First class function: You can use functions as values.
@@ -77,18 +71,15 @@ reduced_sum_list = functools.reduce(add, [1, 2, 3, 4, 5])
 print(reduced_sum_list)
 # 15
 </code></pre><p>With these functions, we can avoid stateful iterations and mutations of variables.
-Another example</p><p><code></code><code>
-import functools</code></p><p>def factorial(n):
+Another example</p><pre><code>import functools
+def factorial(n):
     return functools.reduce(lambda x, y: x <i> y, range(1, n + 1))
-```</i></p><p>There are more functions like <code>.intersection()</code> and <code>.zip()</code></p><p>- Intersection takes 2 sets and will return a set where the elements are in both sets
-- Zip takes 2 iterables and return a new interable where each element is a tuple based on their indexes.
-  <code></code><code>
-  a = [1, 2, 3]
-  b = [4, 5, 6]
-  c = list(zip(a, b))
-  print(c)
-  # [(1, 4), (2, 5), (3, 5)]
-  </code><code></code></p><h1>Pure vs Impure function</h1><p>Pure functions <b>always return the same value given the same arguments</b> and <b>running them causes no side effects</b>.</p><blockquote><b>Pure functions don't do anything with anything that exists outside of their scope</b>
+</i></code></pre><p>There are more functions like <code>.intersection()</code> and <code>.zip()</code></p><ul><li>Intersection takes 2 sets and will return a set where the elements are in both sets</li><li>Zip takes 2 iterables and return a new interable where each element is a tuple based on their indexes.</li></ul><pre><code>a = [1, 2, 3]
+b = [4, 5, 6]
+c = list(zip(a, b))
+print(c)
+# [(1, 4), (2, 5), (3, 5)]
+</code></pre><h1>Pure vs Impure function</h1><p>Pure functions <b>always return the same value given the same arguments</b> and <b>running them causes no side effects</b>.</p><blockquote><b>Pure functions don't do anything with anything that exists outside of their scope</b>
 Example of a pure function</blockquote><pre><code>def findMax(nums):
     max_val = float('-inf')
     for num in nums:
@@ -118,16 +109,18 @@ else:
 	return functionName
 </code></pre><h2>Currying</h2><pre><code>function(1,2,3)
 function(1)(2)(3)
-</code></pre><h2>\<i>ARGS AND \</i>KWARGS</h2><p><code></code><code>
-def args_logger(</code><i>args, </i><b>kwargs):
+</code></pre><h2>\<i>ARGS AND \</i>KWARGS</h2><pre><code>def args_logger(<i>args, </i><b>kwargs):
     for i in range(len(args)):
         print(f'{i+1}. {args[i]}')
     for key, value in sorted(kwargs.items()):
-        print(f'* {key}: {value}')</b></p><p>args_logger("hi", True, age=24, f_name=Gary, l_name=Feng)</p><h1>1. hi
-2. True
-<i> age: 24
-</i> f_name: Gary
-<i> l_name: Feng</i></h1><pre><code></code></pre><p>Accepts multiple arguments and key value dictionary argument</p><pre><code>substitute(document, <b>edit)
+        print(f'* {key}: {value}')
+args_logger("hi", True, age=24, f_name=Gary, l_name=Feng)
+# 1. hi
+# 2. True
+# * age: 24
+# * f_name: Gary
+# * l_name: Feng
+</b></code></pre><p>Accepts multiple arguments and key value dictionary argument</p><pre><code>substitute(document, <b>edit)
 def substitute(document, insert_text, line_number, start, end):
   #stuff
 edit = {'insert_text': stuff, 'line_number': stuff, 'start': stuff, 'end': stuff}

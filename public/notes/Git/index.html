@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Tags </title>
+    <title> Worktree </title>
     <link href="/index.css" rel="stylesheet">
 </head>
 
@@ -47,7 +47,7 @@ git reset --hard
 git remote add <name> <uri>
 //one true repo
 git log <name>/<branch>
-</code></pre><p><img src=":/edc2926062ec4d5aaf2088d826877e19" alt="338c3e078618e3531076fde5e9a358de.png"></img></p><h2>.gitignore</h2><p>a file hidden so that git ignores whatever is in the file
+</code></pre><p><img src="/images/338c3e078618e3531076fde5e9a358de.png" alt="338c3e078618e3531076fde5e9a358de.png"></img></p><h2>.gitignore</h2><p>a file hidden so that git ignores whatever is in the file
 Things that can be inside of .gitignore</p><pre><code>filename
 directory
 <i>.txt match anything that ends with .txt
@@ -56,7 +56,7 @@ directory
 !important.txt
 //will ignore all .txt file except important
 use # to comment inside the .gitignore file
-</code></pre><h1>Git 2</h1><h1>Fork</h1><p>Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.</p><p>Procedure to contribute:</p><ol><li>fork repo</li><li>clone repo</li><li>make new branch with a name ie: your_feature</li><li>make changes</li><li>commit and push to your repo</li><li>create pull request on original repo</li></ol><pre><code>git clone https://github.com/chichigami/megacorp
+</code></pre><h2>Fork</h2><p>Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.</p><p>Procedure to contribute:</p><ol><li>fork repo</li><li>clone repo</li><li>make new branch with a name ie: your_feature</li><li>make changes</li><li>commit and push to your repo</li><li>create pull request on original repo</li></ol><pre><code>git clone https://github.com/chichigami/megacorp
 cd megacorp
 git branch
 git switch or git checkout
@@ -71,12 +71,12 @@ git merge main
 git add
 git commit
 	git log should now show the 2 commit hashes come together
-</code></pre><h1>Stash</h1><pre><code>git stash
+</code></pre><h2>Stash</h2><pre><code>git stash
 git stash pop
 git stash list
 git stash apply
 git cherry-pick <commit-hash>
-</code></pre><h1>Bisect</h1><p>Bisec helps you find which commit caused a bug</p><pre><code>git bisect start
+</code></pre><h2>Bisect</h2><p>Bisec helps you find which commit caused a bug</p><pre><code>git bisect start
 git bisect good <commit-hash>
 git bisect bad <commit-hash>
 </code></pre><h1>Worktree</h1><pre><code>git worktree add <path> <branch>
@@ -85,7 +85,7 @@ git worktree list
 cat <path>/.git will link to the main worktree
 git worktree remove <worktree_name>
 git worktree prune
-</code></pre><p>Can't switch branch that is being worked on in another tree</p><h1>Tags</h1><p>Useful for versions of the application
+</code></pre><p>Can't switch branch that is being worked on in another tree</p><h2>Tags</h2><p>Useful for versions of the application
 ie: v1.0, 2.0 etc</p><pre><code>git tag
 	list all tags
 git tag -a "tag_name" -m "tag_description"

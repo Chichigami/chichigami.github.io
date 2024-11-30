@@ -1,5 +1,7 @@
 # Algorithms
 
+WIP. Forgot to take notes.
+
 ## Binary Search
 
 Search for an element in a SORTED array by splitting the array in half and checking if the median = target
@@ -17,7 +19,6 @@ def binary_search(target, arr):
         else:
             right = middle - 1
     return False
-
 //target 8, [1,2,3,4,5,6,7,8,9,10]
 //[6,7,8,9,10]
 //return [8]
@@ -31,7 +32,7 @@ Split the list in 2 halves all the way down to 1 element. Then recombines it bac
 
 ```
 
-# Dijkstras
+## Dijkstras
 
 Visit all veritces and find the path with minimum distance
 
@@ -49,7 +50,6 @@ class Graph:
 			self.graph[v].add(u)
 		else:
 			self.graph[v] = {u}
-
 def get_min_dist_node(dict, unvisited):
 	min_dist = float("inf")
     min_place = None
@@ -58,5 +58,4 @@ def get_min_dist_node(dict, unvisited):
             min_dist = distances[place]
             min_place = place
     return min_place
-
 ```

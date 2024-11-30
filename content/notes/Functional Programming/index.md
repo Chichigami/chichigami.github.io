@@ -5,11 +5,12 @@ Functional programming (FP) is a style/paradigm of programming. We compose funct
 - FP is more about declaring what you want to happen vs how you want it to happen
   `return walk(drink_water(create_person())))` - In this example, we never change the value of person variable, we compose functions that return new values with outermost function. `walk` returning final result.
 - Imperative/Procedural programming declares what and the how.
-  ```
-  person = create_person()
-  person.drink_water(10)
-  person.walk()
-  ```
+
+```
+person = create_person()
+person.drink_water(10)
+person.walk()
+```
 
 ## Python not BiS
 
@@ -64,7 +65,7 @@ If unsure, default to functions.
 
 > Functions encourage you to think about the world as a series of data transformations. Functions take data as input and return a transformed output. For example, a function might take the entire state of a chess board and a move as inputs, and return the new state of the board as output.
 
-Both are just styles of programming. Nothing superior. They both share some of the ideas of OOP. ![5bbb7583b7ef7537d275580d1e2b6477.png](:/fa39c6f1192341dc9feeb9a17d7efd3c)
+Both are just styles of programming. Nothing superior. They both share some of the ideas of OOP. ![5bbb7583b7ef7537d275580d1e2b6477.png](/images/5bbb7583b7ef7537d275580d1e2b6477.png)
 Inheritance isn't part of FP due to the nature of mutable classes.
 
 ## Debugging
@@ -151,7 +152,6 @@ Another example
 
 ```
 import functools
-
 def factorial(n):
     return functools.reduce(lambda x, y: x * y, range(1, n + 1))
 ```
@@ -160,13 +160,14 @@ There are more functions like `.intersection()` and `.zip()`
 
 - Intersection takes 2 sets and will return a set where the elements are in both sets
 - Zip takes 2 iterables and return a new interable where each element is a tuple based on their indexes.
-  ```
-  a = [1, 2, 3]
-  b = [4, 5, 6]
-  c = list(zip(a, b))
-  print(c)
-  # [(1, 4), (2, 5), (3, 5)]
-  ```
+
+```
+a = [1, 2, 3]
+b = [4, 5, 6]
+c = list(zip(a, b))
+print(c)
+# [(1, 4), (2, 5), (3, 5)]
+```
 
 # Pure vs Impure function
 
@@ -271,15 +272,12 @@ def args_logger(*args, **kwargs):
         print(f'{i+1}. {args[i]}')
     for key, value in sorted(kwargs.items()):
         print(f'* {key}: {value}')
-
 args_logger("hi", True, age=24, f_name=Gary, l_name=Feng)
-
 # 1. hi
 # 2. True
 # * age: 24
 # * f_name: Gary
 # * l_name: Feng
-
 ```
 
 Accepts multiple arguments and key value dictionary argument

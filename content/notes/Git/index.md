@@ -33,7 +33,7 @@ git remote add <name> <uri>
 git log <name>/<branch>
 ```
 
-![338c3e078618e3531076fde5e9a358de.png](:/edc2926062ec4d5aaf2088d826877e19)
+![338c3e078618e3531076fde5e9a358de.png](/images/338c3e078618e3531076fde5e9a358de.png)
 
 ## .gitignore
 
@@ -51,9 +51,7 @@ directory
 use # to comment inside the .gitignore file
 ```
 
-# Git 2
-
-# Fork
+## Fork
 
 Not a git operation. To fork a repo, go to git hosting website and there's a fork. It's just a copy of the repo in github account.
 
@@ -84,7 +82,7 @@ git commit
 	git log should now show the 2 commit hashes come together
 ```
 
-# Stash
+## Stash
 
 ```
 git stash
@@ -94,7 +92,7 @@ git stash apply
 git cherry-pick <commit-hash>
 ```
 
-# Bisect
+## Bisect
 
 Bisec helps you find which commit caused a bug
 
@@ -117,7 +115,7 @@ git worktree prune
 
 Can't switch branch that is being worked on in another tree
 
-# Tags
+## Tags
 
 Useful for versions of the application
 ie: v1.0, 2.0 etc

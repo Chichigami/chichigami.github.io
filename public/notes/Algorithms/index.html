@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Dijkstras </title>
+    <title> Algorithms </title>
     <link href="/index.css" rel="stylesheet">
 </head>
 
@@ -19,8 +19,7 @@
     </nav>
 
     <article>
-        <div><h1>Algorithms</h1><h2>Binary Search</h2><p>Search for an element in a SORTED array by splitting the array in half and checking if the median = target</p><p><code></code><code>
-def binary_search(target, arr):
+        <div><h1>Algorithms</h1><p>WIP. Forgot to take notes.</p><h2>Binary Search</h2><p>Search for an element in a SORTED array by splitting the array in half and checking if the median = target</p><pre><code>def binary_search(target, arr):
     left = 0
     right = len(arr) - 1
     while left <= right:
@@ -31,11 +30,11 @@ def binary_search(target, arr):
             left = middle + 1
         else:
             right = middle - 1
-    return False</code></p><p>//target 8, [1,2,3,4,5,6,7,8,9,10]
+    return False
+//target 8, [1,2,3,4,5,6,7,8,9,10]
 //[6,7,8,9,10]
 //return [8]
-<code></code><code></code></p><h2>Merge Sort</h2><p>Split the list in 2 halves all the way down to 1 element. Then recombines it back.</p><pre><code></code></pre><pre><code></code></pre><h1>Dijkstras</h1><p>Visit all veritces and find the path with minimum distance</p><p><code></code><code>
-class Graph:
+</code></pre><h2>Merge Sort</h2><p>Split the list in 2 halves all the way down to 1 element. Then recombines it back.</p><pre><code></code></pre><pre><code></code></pre><h2>Dijkstras</h2><p>Visit all veritces and find the path with minimum distance</p><pre><code>class Graph:
 	def __init__(self):
 		self.graph = {}
 	def add_edges(self, u, v):
@@ -47,14 +46,16 @@ class Graph:
 		if v in self.graph:
 			self.graph[v].add(u)
 		else:
-			self.graph[v] = {u}</code></p><p>def get_min_dist_node(dict, unvisited):
+			self.graph[v] = {u}
+def get_min_dist_node(dict, unvisited):
 	min_dist = float("inf")
     min_place = None
     for place in unvisited:
         if distances[place] < min_dist:
             min_dist = distances[place]
             min_place = place
-    return min_place</p><pre><code></code></pre></div>
+    return min_place
+</code></pre></div>
     </article>
 
     <footer class="footer">

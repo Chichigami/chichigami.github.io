@@ -22,5 +22,5 @@ I use a two part system to take my notes. The first part is just quickly jotting
 
 - [Data Structs](/notes/Data%20Structures)
 - [Algo](/notes/Algorithms)
-- [Functional Programming](/notes/Funcitonal%20Programming)
+- [Functional Programming](/notes/Functional%20Programming)
 - [HTTP servers](/notes/HTTP%20server)

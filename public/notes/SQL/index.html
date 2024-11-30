@@ -28,11 +28,11 @@
 Contraints can be <code>NOT NULL | UNIQUE | PRIMARY KEY</code>
 <code>NOT NULL</code> Won't accept values that is NULL
 <code>UNIQUE</code> Will not allow dupeplicate data in the column. Can be NULL
-<code>PRIMARY KEY</code> Will automatically generate somethign if left empty. Can not be NULL</p><h2>Reference/Foreign key</h2><p>Foreign key will reference to another table's primary key. This makes table relational</p><p><code></code><code>
-CREATE TABLE departments (
+<code>PRIMARY KEY</code> Will automatically generate somethign if left empty. Can not be NULL</p><h2>Reference/Foreign key</h2><p>Foreign key will reference to another table's primary key. This makes table relational</p><pre><code>CREATE TABLE departments (
     id INTEGER PRIMARY KEY,
     department_name TEXT NOT NULL
-);</code></p><p>CREATE TABLE employees (
+);
+CREATE TABLE employees (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     department_id INTEGER,
@@ -40,7 +40,7 @@ CREATE TABLE departments (
     FOREIGN KEY (department_id)
     REFERENCES departments(id)
 );
-<code></code><code></code></p><h2>Insert Data</h2><pre><code>INSERT INTO table (param1, param2, ...)
+</code></pre><h2>Insert Data</h2><pre><code>INSERT INTO table (param1, param2, ...)
 VALUES (arg1, arg2, ...);
 </code></pre><ul><li>However, most of the time we will use a library in another programing language.</li></ul><h2>Alter/Change data</h2><pre><code>ALTER TABLE table_name
 	RENAME TO table_name;

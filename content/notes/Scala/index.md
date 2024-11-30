@@ -27,7 +27,6 @@ Byte
 ```
 trait Speaker:
 	def speak(): String
-
 class Dog(name: String) extends Speaker:
 	def speak(): String = "Woof!"
 ```
