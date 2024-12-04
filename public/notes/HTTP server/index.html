@@ -19,9 +19,9 @@
     </nav>
 
     <article>
-        <div><h1>HTTP servers</h1><h2>Goals</h2><ul><li>Understand what web servers are</li><li>Build a production style HTTP server without framework</li><li>Use JSON, headers, status codes to communicate with client via RESTful API</li><li>Use typesafe SQL to store and retrieve data from Postgres db</li><li>Implement secure auth system w/ crypto libs</li><li>Build and understand webhooks</li><li>Document REST API w/ MD</li></ul><h2>Servers</h2><p>Many different server stacks</p><ul><li>Go: Great performance whether the workload is I/O or CPU-bound</li><li>Python / Django / Flask: ok in I/O task</li><li>  - Usually python apps handle single request at a time. WSGI saves the day by spinning up multiple python instances to handle diff req.</li><li>Node.js / Express.js: Good in I/O but struggles in CPU-bound tasks.</li><li>  - Usually single threaded. Uses single cpu core. Handles many request via async event loops.</li></ul><p><code></code><code>go
-func main(){
-	const port = "8080"</code></p><p>mux := http.NewServeMux()
+        <div><h1>HTTP servers</h1><h2>Servers</h2><p>Many different server stacks</p><ul><li>Go: Great performance whether the workload is I/O or CPU-bound</li><li>Python / Django / Flask: ok in I/O task</li><li>  - Usually python apps handle single request at a time. WSGI saves the day by spinning up multiple python instances to handle diff req.</li><li>Node.js / Express.js: Good in I/O but struggles in CPU-bound tasks.</li><li>  - Usually single threaded. Uses single cpu core. Handles many request via async event loops.</li></ul><pre><code>func main(){
+	const port = "8080"
+	mux := http.NewServeMux()
 	server := &http.Server{
 		Addr:    ":" + port,
 		Handler: mux,
@@ -29,47 +29,76 @@ func main(){
 	log.Printf("Serving on port: %s\n", port)
 	server.ListenAndServe()
 }
-<code></code><code></code></p><p>Very basics of hosting a server on localhost:8080</p><h2>Handlers vs Handlers func</h2><p><code></code><code>
-	mux.Handle("/app/", http.StripPrefix("/app", http.FileServer(http.FileSystem(http.Dir(".")))))
-	mux.HandleFunc("/healthz", handlerHealthz)</code></p><p>func handlerHealthz(w http.ResponseWriter, req <i>http.Request) {
+</code></pre><p>Very basics of hosting a server on localhost:8080</p><h2>Handlers vs Handlers func</h2><pre><code>	mux.Handle("/app/", http.StripPrefix("/app",
+		http.FileServer(http.FileSystem(http.Dir(".")))))
+	mux.HandleFunc("/healthz", handlerHealthz)
+func handlerHealthz(w http.ResponseWriter, req <i>http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.WriteHeader(200)
 	w.Write([]byte("OK"))
 }
-```</i></p><p>A handler is an interface.</p><pre><code>type Handler interface {
+</i></code></pre><p>A handler is an interface.</p><pre><code>type Handler interface {
 	ServeHTTP(ResponseWriter, <i>Request)
 }
 </i></code></pre><p>Handlers handles HTTP requests. Usually will be used to handle more complex task. HandlerFunc are used when you want to implement simpler handler.</p><pre><code>type HandlerFunc func(ResponseWriter, <i>Request)
 </i></code></pre><p>\<i>Request contains all info coming from client like method, path, headers, and body
 ResponseWriter is mutable and we want to write to it. Think of it like changing a dict in Python.</i></p><pre><code>def changeItem(dict):
 	dict[item] = changed
-</code></pre><p>So no copying required (less memory). Less chance of of bugs / mismatched data. Clarity</p><p><code></code><code>
-	apiCfg := apiConfig{}</code></p><p>mux.Handle("/app/", http.StripPrefix("/app", apiCfg.middlewareMetricInc(http.FileServer(http.FileSystem(http.Dir("."))))))
+</code></pre><p>So no copying required (less memory). Less chance of of bugs / mismatched data. Clarity</p><pre><code>	apiCfg := apiConfig{}
+	mux.Handle("/app/", http.StripPrefix("/app",
+		apiCfg.middlewareMetricInc(
+			http.FileServer(http.FileSystem(http.Dir("."))))))
 	mux.HandleFunc("/healthz", handlerHealthz)
 	mux.HandleFunc("/metrics", apiCfg.handlerMetric)
-	mux.HandleFunc("/reset", apiCfg.handlerMetricReset)</p><p>func (cfg <i>apiConfig) handlerMetric(w http.ResponseWriter, req </i>http.Request) {
-	result := fmt.Sprintf("Hits: %d\n", cfg.fileserverHits.Load())</p><p>w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	mux.HandleFunc("/reset", apiCfg.handlerMetricReset)
+func (cfg <i>apiConfig) handlerMetric(w http.ResponseWriter, req </i>http.Request) {
+	result := fmt.Sprintf("Hits: %d\n", cfg.fileserverHits.Load())
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.WriteHeader(200)
 	w.Write([]byte(result))
-}</p><p>func (cfg <i>apiConfig) handlerMetricReset(w http.ResponseWriter, req </i>http.Request) {
+}
+func (cfg <i>apiConfig) handlerMetricReset(w http.ResponseWriter, req </i>http.Request) {
 	cfg.fileserverHits.Store(0)
-}</p><p>func (cfg <i>apiConfig) middlewareMetricInc(next http.Handler) http.Handler {
+}
+func (cfg <i>apiConfig) middlewareMetricInc(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req </i>http.Request) {
 		cfg.fileserverHits.Add(1)
 		next.ServeHTTP(w, req)
 	})
-}</p><p>type apiConfig struct {
+}
+type apiConfig struct {
 	fileserverHits atomic.Int32
 }
-<code></code><code></code></p><h2>Routing</h2><pre><code>	mux.HandleFunc("GET /healthz", handlerHealthz)
+</code></pre><h2>Routing</h2><pre><code>	mux.HandleFunc("GET /healthz", handlerHealthz)
 	mux.HandleFunc("GET /metrics", apiCfg.handlerMetric)
 	mux.HandleFunc("POST /reset", apiCfg.handlerMetricReset)
 </code></pre><p>Only allows /healthz, /metrics to be reached via GET request.</p><pre><code>[Method ][HOST]/[PATH]
 </code></pre><p>The above is a pattern. Will match pattern based on the longest string.
-/assets/css/style.css will be handled by /assets/css/</p><h2>Architectures</h2><h3>Monoliths and Decoupling</h3><p>Coupling in this context would be the data and presentation logic of the data.
+/assets/css/style.css will be handled by /assets/css/</p><h2>Storage</h2><p>Memory vs Disk
+When running a program, it will be in RAM but using it as storage isn't a good idea since it will be wiped on restart.</p><p>On disk it will be permanant. One of the ways to write to disk is a raw file, like json. Okay in some uses, but it will have issues with concurrency, scalability, and complexity. You won't be able to write write to the same file at same time. If you write a lot of code to deal with files, the higher chance of bugs. Read and writing large files will take a lot of disk space.</p><p>A database also writes to disk via files but comes with efficiency.</p><pre><code>sh
+brew install postgresql@15                 #install
+brew services start postgresql@15          #starting server in background
+psql postgres                              #connect to server
+</code></pre><p>Connection string is all info needed to connect to a database.
+<code>postgres://chichigami:@localhost:5432/chirpy</code></p><p>Make an <code>.env</code> file with <code>DB_URL="YOUR_CONNECTION_STRING_HERE"</code></p><p>We will need to import some drivers and libraries. Postgres driver needs to be imported even if we don't interact with it. godotenv package is used to read the <code>.env</code> file.</p><pre><code>import (
+	"github.com/chichigami/chirpy/internal/database"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
+)
+func main(){
+	godotenv.Load()
+	dbURL := os.Getenv("DB_URL")
+	db, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		log.Fatalf("Error opening database: %s", err)
+	}
+	dbQueries := database.New(db)
+}
+</code></pre><h2>Architectures</h2><h3>Monoliths and Decoupling</h3><p>Coupling in this context would be the data and presentation logic of the data.
 Front end: The presentation logic
-In a web app, it would be HTML CSS JS</p><h2>Authentication vs Authorization</h2><p>Authentication: Verify a user via some method like password, api key, 2fa, etc
-Authorization: ALLOWS a verified user to do an action. Like discord mod vs kitten</p><h2>Webhooks</h2><p>A webhook is an event that is sent to your server by 3rd party service. Example: Stripe to process payments
+In a web app, it would be HTML CSS JS</p><h2>Authentication</h2><p>Types of authentication</p><ul><li>ID + Password</li></ul><ul><li>3rd party (google/github/discord/etc login)</li></ul><ul><li>Magic links: sends link to user email and webserver will decode the unique token encoded in the email</li></ul><ul><li>API keys: long secure string that uniquely identifies a user or system</li></ul><h3>JSON Web Token (JWT)</h3><p>Cryotgraphically signed JSON object about an authenticated user.</p><ol><li>User submits user/pass.</li><li>Server sends JWT w/ user id and other info to client</li><li>On every authenticated req, server validates JWT</li><li>JWT expires and cycle repeats</li></ol><p>JWT are stateless. So servers don't need to keep track of is logged in. Good for scalabiity.</p><h3>Refresh Token:</h3><ul><li>Used to refresh JWT when they expire without the need to relog.</li><li>Longer lifespan than JWT. Stored server side.</li><li>If refresh token is valid and not expired, issue new JWT.</li></ul><h3>Cookies</h3><p>Cookie is a small piece of data that a server sends to a client. Example: an item in a shoping cart
+Cookies are sent via http header <code>Set-Cookie</code> and are sent back to the server automatically via
+<code>Cookie</code> header.</p><h2>Authorization</h2><p>Veryifying what a user is allowed to do. Either if they make or delete their own content, or if they're an admin/mod.</p><h2>Webhooks</h2><p>A webhook is an event that is sent to your server by 3rd party service. Example: Stripe to process payments
 Stripe sends a webhook to server and we use that info. Example: Stripe sends webhook, we give membership
 Webhooks often make multiple request. So the webhook handler needs to be idempotent (result is the same, can have side effects).
 Process:</p><ol><li>Person makes payment to Stripe</li><li>Stripe process payment</li><li>Stripe sends a HTTP POST request to http://api.example.com/stripe/webhook</li><li>We handle the request AND THEN we send back a 2XX code</li></ol><p><b>NOT THE SAME AS WEBSOCKETS</b>. Websockets is a persistent connection between client and server.</p><h2>RESTful API (CRUD API)</h2><p>Conventional ways to make an API</p><pre><code>GET      /videos            #all videos
@@ -77,8 +106,9 @@ GET      /videos/id         #/videos/2
 POST     /videos            #create a video
 PUT      /videos/id         #update a video
 DELETE   /videos/id         #delete a video
-</code></pre><p>DO NOT remove the plural convention. <b>DO NOT DO /video/id</b>
-Usually DELETE /videos DOES NOT EXIST. Do not want to delete all videos from the platform</p></div>
+</code></pre><p>Do not remove the plural convention. <b>DO NOT DO /video/id</b>
+Usually DELETE /videos DOES NOT EXIST. Do not want to delete all videos from the platform</p><h2>Documentation</h2><p>No API > Bad API
+Because incorrect documentation is worse than not having anything.</p></div>
     </article>
 
     <footer class="footer">
