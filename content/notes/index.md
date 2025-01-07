@@ -17,6 +17,7 @@ I use a two part system to take my notes. The first part is just quickly jotting
 - [K8s](/notes/Kubernetes)
 - [Docker](/notes/Docker/)
 - [Git](/notes/Git)
+- [CI/CD](/notes/CICD)
 
 ## Fundamentals
 
