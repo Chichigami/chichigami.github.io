@@ -5,4 +5,4 @@ env
 main.sh
 test.sh
 tests/__pycache__/
-.public/
+public
